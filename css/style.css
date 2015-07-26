@@ -21,6 +21,7 @@ li{
 	background: black;
 	width: 100%;
 	position: fixed;
+	z-index: 3;	
 }
 .liebiao{
 	color: #FFFDEF;
@@ -96,8 +97,9 @@ font-weight:bold;
 	height: 500px;
 	position: fixed;
 	background: #999999;
-	bottom: -400px;
+	bottom: -500px;
 }
+
 .nunber{
 	width: 33%;
 	height: 100px;
@@ -172,3 +174,17 @@ font-weight:bold;
 #income{
 	
 }
+
+
+#my{
+	
+width: 80%;
+height: 100%;
+background: white;
+position: fixed;
+z-index: 1;	
+right: 0;	
+}
+
+
+

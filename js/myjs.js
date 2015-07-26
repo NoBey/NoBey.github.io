@@ -30,6 +30,8 @@ numtext.setnum =function(txt){
 
 (function(){
   var att = $(".nunber");
+  var adad = 0
+  
 for (var i=0;i<10;i++) {
 	
 	
@@ -38,9 +40,9 @@ for (var i=0;i<10;i++) {
 	//console.log(i);
 	}
 
-$(".addnum").on("click",function(){numtext.num($(this).html())});
-$(".rednum").on("click",function(){numtext.num($(this).html())});
-$("#ok").on("click",function(){ numtext.evl();numtext.retn();keydown();$("#"+ok_key).html(numtext());localStorage.setItem(ok_key,numtext()) })
+$(".addnum").on("click",function(){if (adad == 0) {numtext.num($(this).html());numtext.retn();adad = 1} else{}});
+$(".rednum").on("click",function(){if (adad == 0) {numtext.num($(this).html());numtext.retn();adad = 1} else{}});
+$("#ok").on("click",function(){  adad=0;numtext.evl();numtext.retn();keydown();$("#"+ok_key).html(numtext());localStorage.setItem(ok_key,numtext()) })
 	
 })();
 
@@ -210,3 +212,10 @@ function keydown(){
 	}
 }
 //--------------
+
+
+
+
+
+
+
