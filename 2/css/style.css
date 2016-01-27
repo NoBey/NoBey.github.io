@@ -1,0 +1,190 @@
+@font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+    
+*{
+	margin: 0px auto;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+li{
+	list-style-type: none;
+}
+
+.top{
+	height: 50px;
+	background: black;
+	width: 100%;
+	position: fixed;
+	z-index: 3;	
+}
+.liebiao{
+	color: #FFFDEF;
+	font-size: 40px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.gongzi{
+	font-size: 70px;
+}
+.main{
+	margin-top: 50px;
+	float: left;
+	width: 100%;
+	height: auto;
+	
+}
+.main ul{
+	width: 100%;
+	height: auto;
+	float: left;
+	}
+.main ul li{
+	width: 100%;
+	height: 100px;
+	float: left;
+	border-bottom: 10px solid #999;
+}
+.add{
+	float: right;width: 20%;
+
+	height: 100%;
+}
+.add i {
+	float: right;
+	font-size: 50px;
+	line-height: 100px;
+	margin-right: 25px;
+	
+}
+.comnect{
+	float: left;
+	width: 80%;
+	height: 100%;
+}
+.wrap{
+	float: left;
+	height: 100%;
+	width: 120px;
+}
+.wrap i {
+	margin-left: 25px;
+	font-size: 70px;
+}
+.wrap a{
+	display: block;
+	width: 120px;height: 20px;
+	text-align: center;
+}
+.qian {
+	height: 100px;
+	font-size: 30px;
+	line-height: 100px;
+	font-weight:bold;
+}
+.qian:before{
+	content:"￥: ";
+
+font-weight:bold;
+}
+#keyboard{
+	width: 100%;
+	height: 500px;
+	position: fixed;
+	background: #999999;
+	bottom: -500px;
+}
+
+.nunber{
+	width: 33%;
+	height: 100px;
+	float: left;
+	color: white;
+	font-size: 50px;
+	line-height: 100px;
+	text-align: center;
+}
+.addnum{
+	width: 33%;
+	height: 100px;
+	float: left;
+	color: white;
+	font-size: 50px;
+	line-height: 100px;
+	text-align: center;
+}
+.addnum:hover{
+	background: #333333;
+}
+.rednum{
+	width: 33%;
+	height: 100px;
+	float: left;
+	color: white;
+	line-height: 100px;
+	font-size: 50px;
+	text-align: center;
+}
+.rednum:hover{
+	background: #333333;
+}
+.nunber:hover{
+	background: #333333;
+}
+#op{
+	width: 30%;
+	height: 100%;
+	float: left;
+	color: white;
+	font-size: 30px;
+	line-height: 100px;
+	text-align: center;
+}
+#txet{
+	width: 40%;
+	height: 100%;
+	float: left;
+	color: white;
+	font-size: 30px;
+	line-height: 100px;
+	text-align: center;
+}
+#tp{
+	width: 100%;
+	height: 100px;
+	float: left;
+}
+#ok{
+	float: right;
+	width: 30%;
+	height: 100%;
+	color: white;
+	font-size: 50px;
+	text-align: center;
+	line-height: 100px;
+}
+#ok:hover{
+	background: #333333;
+}
+#income{
+	
+}
+
+
+#my{
+	
+width: 80%;
+height: 100%;
+background: white;
+position: fixed;
+z-index: 1;	
+right: 0;	
+}
+
+
+
