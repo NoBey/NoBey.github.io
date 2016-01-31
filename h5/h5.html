@@ -38,7 +38,7 @@
 		
 		
 		<div id="warp">
-					<video  id="video1"  src="123.mov"  width="100%" ></video>
+					<video  id="video1"  src="123.mov" preload="auto" autoplay="true"  width="100%" ></video>
 					<div id="bt1" class="bt">
 						长按播放
 					</div>
@@ -47,10 +47,12 @@
 			var myVideo=document.getElementById("video1")
 			var bt=document.getElementById("bt1")
 		  bt.ontouchstart= function(){
+		  	event.preventDefault();
 		  	myVideo.play()
 		  }
 		  
 		  bt.ontouchend = function(){
+		  	event.preventDefault();
 		  	myVideo.pause()
 		  }
 			
