@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>NoBey</title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body >
+		<div id="one">
+			
+			<canvas id="me" width="200" height="200"></canvas>
+		
+			<script>
+		
+window.onload=function(){
+	
+	winht=window.innerHeight
+winw=window.innerWidth
+if(winht>winw){
+	document.getElementById("one").style.width="100%"
+	
+}
+}
+		
+
+
+
+
+
+
+
+
+var t
+var i
+function me(pi){
+
+pi=1-pi
+var c=document.getElementById("me");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#ff7e7b";
+//ctx.strokeStyle="#0000ff";
+//cxt.strokeStyle="green";
+//cxt.lineWidth=2
+//cxt.stroke();
+
+
+	var img1=new Image();
+img1.src="img/a1.jpg";
+cxt.drawImage(img1,0,0,200,200);
+cxt.beginPath();
+cxt.moveTo(100,100)
+cxt.arc(100,100,100,0,Math.PI*pi*2);
+cxt.closePath();
+cxt.fill();
+
+}
+
+function time(pi){
+	if(pi>100){
+		return ;
+	}else{
+		me(pi/100);
+		i=i+1;
+		console.log(i);
+		t=setTimeout("time(i)",10)
+	}
+	
+}
+
+function time1(pi){
+	if(pi<0){
+		return ;
+	}else{
+		me(pi/100);
+		i=i-1;
+		console.log(i);
+		t=setTimeout("time1(i)",10)
+	}
+	
+}
+
+function anxia(){
+	t=setTimeout("time(i)",10)
+}
+function fangkai(){
+	clearTimeout(t)
+	if (i<100) {
+			time1(i)
+	}
+
+}
+var i=0
+
+ //t=setTimeout("time(i)",10)
+
+document.getElementById("me").onmousedown=anxia
+
+document.getElementById("me").onmouseout=fangkai
+
+document.getElementById("me").ontouchstart=anxia
+document.getElementById("me").ontouchend=fangkai
+
+
+
+
+
+
+			</script>
+		
+			
+			
+		</div>
+	</body>
+</html>
