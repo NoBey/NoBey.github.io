@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+	html,body{
+		background: greenyellow;
+		position: absolute;
+		top: 0px;
+	}
+		#do{
+			width: 30px;
+			height: 30px;
+			background: red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			z-index:9;
+
+					display: block;
+		}
+		input{
+	
+	position: absolute;
+	top: 30px;
+	left: 10px;
+	z-index: 11;
+	display: block;
+		}
+	</style>
+	</head>
+	<body>
+		
+		<div id="do">
+	
+		</div>
+			<input type="text" name="" id="qq" value="" />
+			
+			
+			
+			
+			<script type="text/javascript">
+				
+			function 
+				
+				
+				console.log(console.log)
+				
+			</script>
+			
+		
+		<script type="text/javascript">
+		
+			for (k in document.all) {
+				 document.all[k].onclick=function(e){
+				 	e.stopPropagation()
+		  	//alert(1)
+		  }
+			}
+			
+			
+			function getleft(e){
+		          document.getElementById('qq').value=e.offsetLeft
+			}
+		 var ff=document.getElementById('do')
+		 
+			setInterval('getleft(ff)',50)
+			
+			
+			
+		</script>
+		
+		
+	<script type="text/javascript">	
+		setInterval('ddd()',20)
+				function ddd(){
+				
+			 if ($('#do').css('left')=='0px') {
+			 	
+			 	$('#do').animate({left:'500px'},1000)
+			 } 
+			 
+				if ($('#do').css('left')=='500px') {
+			 	
+			 	$('#do').animate({left:'0px'},1000)
+			 } 
+			 
+		}
+				
+				
+			
+				
+			
+		</script>
+	</body>
+</html>
