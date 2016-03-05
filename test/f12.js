@@ -63,8 +63,27 @@ f12.onmousedown=f12down;
  gbody.onkeydown=f12key;
 
 
+function getpra(ele){
+	var e =ele
+	if (e.parentElement==f12) {
+		return true;
+	} else{
+		if (e.parentElement==document) {
+			return false;
+		}
+		getpra(e);
+	}
+}
+
+
 
 for (k in document.all) {
+	if(getpra(k)){
+		break
+	}
+	
+	
+	
 				 document.all[k].onmouseover=function(e){
 				 	e.stopPropagation();
 		       var element=e.target;

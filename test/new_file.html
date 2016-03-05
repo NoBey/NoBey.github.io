@@ -6,7 +6,7 @@
 	</head>
 
 	<body>
-		<form>
+		<form id="ffff">
 <input class="radio" type="radio" name="sex" value="male" /> Male
 <br />
 <input  class="radio" type="radio" name="sex" value="female" /> Female
@@ -24,9 +24,31 @@ I have a bike
 <input type="checkbox" name="bike" />
 I have a bike
 <br />
-<input type="checkbox" name="car" />
+<input id="ssss" type="checkbox" name="car" />
 I have a car
 </form>
+<script>
 
+	var ssss= document.getElementById('ssss').parentElement
+		var ffff=	document.getElementById('ffff')
+		
+function getpra(ele){
+	var e =ele
+	if (e.parentElement==ffff) {
+		return true;
+	} else{
+		if (e.parentElement==document) {
+			return false;
+		}
+		getpra(e);
+	}
+}
+
+	
+	console.log(	 getpra(ssss))
+
+	
+	
+</script>
 	</body>
 </html>

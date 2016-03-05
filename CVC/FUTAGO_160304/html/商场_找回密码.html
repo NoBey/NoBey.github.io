@@ -2,14 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FUTAGO--产品页</title>
+    <title>FUTAGO--产品定做</title>
     <link rel="stylesheet" href="../themes/css/common.css">
+    	<link rel="stylesheet" type="text/css" href="../themes/css/newstyle.css"/>
 </head>
 <body>
 <div class="layout">
-    <div class="g-header">
+    <div class="g-header" >
         <div class="g-logo"><h1><a href="#">FUTAGO</a></h1><h2></h2></div>
-        <div class="g-lang"><a class="icon-lang" href="#"><em>中</em></a><a class="icon-lang" href="#"><em>ENG</em></a></div>
+                <div class="g-lang" style="margin-bottom: 80px;font-size: 14px;">
+                	<p><img src="../newimg/usa.jpg"/> <select style="border: 0px;margin-right: -5px;">
+                	<option>$ HKD</option>
+                	<option>$ HKD</option>
+                	<option>$ HKD</option>
+                </select></p></div>
+        <div class="g-lang" style="margin-bottom: 30px;font-size: 14px;"><p>Welcome to Futago.<a style="border: 0px;" href="#">Join</a><a style="border: 0px;border-left: 1px solid #000000;border-radius: 0px;padding-left: 10px;" href="#">Sign In</a> </p></div>
+        <div class="g-lang"><a href="#" style="border: 0px;font-size: 14px;"> <img style="margin-top: -6px;margin-right: 8px;" src="../newimg/suojpg.jpg"/>Shopping Bag</a></div>
     </div>
     <div class="g-nav">
         <ul>
@@ -24,42 +32,22 @@
         <a class="fb-link" href="#">facebook</a>
     </div>
     
-    <div class="m-banner"><img src="../img/pro_page.jpg" alt="" width="960px" height="400"/></div>
+    <div class="g-page-tit" style="text-align: left;margin-top: 20PX;font-size: 24px;">Reset Your Password</div> 
     
-    <div class="u-line"></div>
     
-    <div class="m-pro-list">
-        <ul>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-            <li><a href="#"><img src="../img/pro1.jpg" alt="" width="240" height="240"><span class="m-pro-mask"><em>new Jewelry Workshop<br>$123.00</em></span></a></li>
-        </ul>
+    
+    <div class="m-custom">
+          <div class="m-contact-btn texton" style="margin-left:236px;padding: 0px;margin-top: 0px;height:200px;width: 430px;padding-top: 30px;" >
+               	<p><span>Email address:</span><input style="background: #FFFFFF;" type="text"  value="" /></p>
+                <p><span> </span><a style="margin:0px;width: 220px;margin-top: 36px;margin-left: 2px;" href="javascript:document.getElementByIdx_x('myform').submit()"> SEND RESET LINK</a> </p>
+                
+          </div>
+        
+            
+          
+          
     </div>
-    
-    <div class="g-page-back">
-        <div class="g-page-num">
-            <a href="#" class="prev">PREV</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <span>...</span>
-            <a href="#">4</a>
-            <a href="#" class="next">NEXT</a>
-        </div>
-    </div>
-    
-    <div class="m-pro-list-ft">
-        <ul>
-            <li><a href="#"><img src="../img/pro/1.jpg" alt="" width="296" height="166"></a></li>
-            <li><a href="#"><img src="../img/pro/2.jpg" alt="" width="296" height="166"></a></li>
-            <li><a href="#"><img src="../img/pro/3.jpg" alt="" width="296" height="166"></a></li>
-        </ul>
-    </div>
+    <div class="g-page-back"><a href="#">BACK</a></div>
     
     <div class="g-footer">
         <div class="m-footer-links">
@@ -118,5 +106,9 @@
 </div>
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/slide2.js"></script>
+<script>
+    $('.m-slide-line').slide({arrow:false});
+</script>
 </body>
 </html>

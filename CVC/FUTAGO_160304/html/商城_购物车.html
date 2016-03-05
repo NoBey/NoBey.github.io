@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>FUTAGO--购物车</title>
+		<link rel="stylesheet" href="../themes/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../themes/css/cmy-style.css" />
+		<script>
+			function addone(ele){
+				var e=document.getElementById(ele);
+				e.value =1+Number(e.value);
+			
+			}
+			function jianone(ele){
+				var e=document.getElementById(ele);
+				if (e.value>0) {
+						e.value =Number(e.value)-1;
+				}
+			
+				
+			
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="layout">
+		<div class="g-header" >
+        <div class="g-logo"><h1><a href="#">FUTAGO</a></h1><h2></h2></div>
+                <div class="g-lang" style="margin-bottom: 80px;font-size: 14px;">
+                	<p><img src="../newimg/usa.jpg"/> <select style="border: 0px;margin-right: -5px;">
+                	<option>$ HKD</option>
+                	<option>$ HKD</option>
+                	<option>$ HKD</option>
+                </select></p></div>
+        <div class="g-lang" style="margin-bottom: 30px;font-size: 14px;"><p>Welcome to Futago.<a style="border: 0px;" href="#">Join</a><a style="border: 0px;border-left: 1px solid #000000;border-radius: 0px;padding-left: 10px;" href="#">Sign In</a> </p></div>
+        <div class="g-lang"><a href="#" style="border: 0px;font-size: 14px;"> <img style="margin-top: -6px;margin-right: 8px;" src="../newimg/suojpg.jpg"/>Shopping Bag</a></div>
+    </div>
+			<div class="g-nav">
+				<ul>
+					<li><a class="crt" href="#">HOME</a></li>
+					<li><a href="#">NEWS</a></li>
+					<li><a href="#">COLLECTIONS</a></li>
+					<li><a href="#">CUSTOM MADE</a></li>
+					<li><a href="#">CRAFTSMANSHIP</a></li>
+					<li><a href="#">CONTACT US</a></li>
+				</ul>
+				<div class="m-search">
+					<input type="text" value="" placeholder="search">
+					<a class="icon-search" href="#" title="search"></a>
+				</div>
+				<a class="fb-link" href="#">facebook</a>
+			</div>
+			<div class="mall">
+				<div class="mall-bag-t">
+					<h4>Shopping Bag</h4>
+				</div>
+				<div class="mall-head">
+					<span class="mall-head-item">ITEM DESCRIPTION</span>
+					<span>YOUR OPTIONS</span>
+					<span>PRICE</span>
+				</div>
+				<div class="mall-bag">
+					<div class="commodity">
+						<a href="#"><img src="../newimg/mall/show4.png" /></a>
+						<div class="commodity-type">
+							<span class="title-AR18">Cushion  Product title</span>
+							<br />
+							<span class="title-GR14">SERIAL  NO.</span>
+							<span class="title-AR14">357-L2</span>
+							<br />
+							<span class="title-GR14">MATERIALS</span>
+							<span class="title-AR14">18k ROSE GOLD\</span>
+						</div>
+						<div class="commodity-options">
+							<span class="title-AR18">Material : 18K</span>
+							<br />
+							<span class="title-AR18">Size : 20</span>
+							<br />
+							<span class="title-AR18">Quantity : </span>
+							<span class="title-AR18"><a onclick="addone('vl1')">+</a></span>
+							<input class="title-AR18" id="vl1" type="number" value="1" />
+							<span class="title-AR18"><a onclick="jianone('vl1')">-</a></span>
+						</div>
+						<div class="commodity-price">
+							<select>
+								<option value="HK">HK</option>
+							</select>
+							<span class="title-AR18">1800</span>
+						</div>
+						<div class="remove">
+							<a href="#">Remove</a>
+						</div>
+					</div>
+					<div class="commodity">
+						<a href="#"><img src="../newimg/mall/show4.png" /></a>
+						<div class="commodity-type">
+							<span class="title-AR18">Cushion  Product title</span>
+							<br />
+							<span class="title-GR14">SERIAL  NO.</span>
+							<span class="title-AR14">357-L2</span>
+							<br />
+							<span class="title-GR14">MATERIALS</span>
+							<span  class="title-AR14">18k ROSE GOLD\</span>
+						</div>
+						<div class="commodity-options">
+							<span class="title-AR18">Material : 18K</span>
+							<br />
+							<span class="title-AR18">Size : 20</span>
+							<br />
+							<span class="title-AR18">Quantity : </span>
+							<span class="title-AR18"><a onclick="addone('vl2')">+</a></span>
+							<input class="title-AR18" id='vl2' type="number" value="1" />
+							<span class="title-AR18"><a onclick="jianone('vl2')">-</a></span>
+						</div>
+						<div class="commodity-price">
+							<select>
+								<option value="HK">HK</option>
+							</select>
+							<span class="title-AR18">1800</span>
+						</div>
+						<div class="remove">
+							<a href="#">Remove</a>
+						</div>
+					</div>
+				</div>
+				<div class="bag-total">
+					<span>Total Amount: HK36,000</span>
+					<a href="#"><span>CONTINUE SHOPPING</span></a>
+					<a href="#"><span>PAY SECURITY NOW</span></a>
+				</div>
+				<div class="mall-bShow clearBorder">
+					<a href="#"><img src="../newimg/mall/bShow1.jpg" /></a>
+					<a href="#"><img class="mall-bShow-img" src="../newimg/mall/bShow2.jpg" /></a>
+					<a href="#"><img class="mall-bShow-img" src="../newimg/mall/bShow1.jpg" /></a>
+				</div>
+				<div class="g-page-back"><a href="#">BACK</a></div>
+			</div>
+			<div class="g-footer">
+				<div class="m-footer-links">
+					<div class="m-footer-box">
+						<div class="m-footer-hd">
+							<h4>COLLECTION</h4><i></i></div>
+						<div class="m-footer-bd">
+							<ul>
+								<li><a href="#">Rhythm of Love</a></li>
+								<li><a href="#">To Infinity</a></li>
+								<li><a href="#">The Garden</a></li>
+								<li><a href="#">Antiquisimo</a></li>
+								<li><a href="#">The Growth Ring</a></li>
+								<li><a href="#">Marry Me</a></li>
+							</ul>
+							<ul>
+								<li><a href="#">Engagement Rings</a></li>
+								<li><a href="#">Marriage Rings</a></li>
+								<li><a href="#">Set Rings</a></li>
+								<li><a href="#">Fashionable</a></li>
+								<li><a href="#">Classicial</a></li>
+								<li><a href="#">Luxurious</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="m-footer-box">
+						<div class="m-footer-hd">
+							<h4>ABOUT  FUTAGO</h4><i></i></div>
+						<div class="m-footer-bd">
+							<ul>
+								<li><a href="#">Custom Made</a></li>
+								<li><a href="#">Brand Concept</a></li>
+								<li><a href="#">Our Diamonds</a></li>
+								<li><a href="#">Our Support</a></li>
+								<li><a href="#">Our Services</a></li>
+								<li><a href="#">News</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="m-footer-box m-footer-box-last">
+						<div class="m-footer-hd">
+							<h4>CUSTOMER  SERVICE</h4><i></i></div>
+						<div class="m-footer-bd">
+							<ul>
+								<li class="phone">+ 852 3563 9260</li>
+								<li><a href="#">Reserve A Booking</a></li>
+								<li><a href="#">Send Us A Email</a></li>
+								<li><a href="#">Find Us On Facebook</a></li>
+								<li><a href="#">Our Business Hours</a></li>
+								<li><a href="#">Our Address</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="u-line"></div>
+				<p class="tc">Copyright © 2011 Futago Jewelry Workshop Limited</p>
+			</div>
+	</body>
+
+</html>
