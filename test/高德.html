@@ -21,95 +21,84 @@
 <div class="button-group" style="top: 0px;">
     <input id="setCenter" type="button" class="button" value="地图定位"/>
     <input id='didian' type="text" class="" value="天津市和平区马场道"/>
+    <input type="text" name="xx" id="xx" value="" style="display: none;" />
+    <input type="text" name="xx" id="yy" value="" style="display: none;" />
 </div>
-<script>
-    var map = new AMap.Map('container', {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],
-        zoom: 13
-    });
-    
-     var marker;
-     
-     
-   function dianji(){
-   	
-   	$.ajax({  
-    url: 'http://restapi.amap.com/v3/geocode/geo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&address='+document.getElementById('didian').value,
-    type: 'GET',
-    dataType: 'xml',
-    success: function(xml) {
-        var location = $(xml).find('location').text();
-        location =location.split(',')
-      console.log(location)
-      
-       map.setZoomAndCenter(30, location);
-        // 在新中心点添加 marker 
-        var marker = new AMap.Marker({
-            map: map,
-            position: location
-        });
-      
-      
-    }
+<script>var map = new AMap.Map('container', {
+	resizeEnable: true,
+	center: [116.397428, 39.90923],
+	zoom: 13
 });
-   	
-   	
-   	// http://restapi.amap.com/v3/geocode/regeo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&radius=1000&extensions=all&location=116.310003,39.991957
 
-   	
-   	
-   }
-   
-   
-   
-      function addMarker(lo) {
-      	
-      	    if (marker) {
-            marker.setMap(null);
-            marker = null;
-        }
-      	
-     
-      marker = new AMap.Marker({
-            icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-            position: lo
-        });
-        marker.setMap(map);
-    }
-   
-    
-    AMap.event.addDomListener(document.getElementById('setCenter'), 'click', dianji);
-    
-        var clickEventListener = map.on('click', function(e) {
-       var lo = e.lnglat.getLng() + ',' + e.lnglat.getLat()
-       console.log(lo)
-        
-    addMarker(lo.split(','))
-       
-       
-       
-       
-       	$.ajax({  
-    url: 'http://restapi.amap.com/v3/geocode/regeo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&radius=1000&extensions=all&location='+lo,
-    type: 'GET',
-    dataType: 'xml',
-    success: function(xml) {
-        var dizhi= $(xml).find('formatted_address').text();
-      
-      document.getElementById('didian').value=dizhi
-      
-      
-    }
+var marker;
+
+function xxyy(arr){
+	document.getElementById('xx').value=arr[0]
+	document.getElementById('yy').value=arr[1]
+}
+
+
+
+function dianji() {
+	$.ajax({
+		url: 'http://restapi.amap.com/v3/geocode/geo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&address=' + document.getElementById('didian').value,
+		type: 'GET',
+		dataType: 'xml',
+		success: function(xml) {
+			var location = $(xml).find('location').text();
+			location = location.split(',')
+			console.log(location);
+			xxyy(location);
+			
+			map.setZoomAndCenter(30, location);
+
+			if (marker) {
+				marker.setMap(null);
+				marker = null;
+			}
+
+			// 在新中心点添加 marker 
+			var marker = new AMap.Marker({
+
+				position: location
+			});
+		}
+	});
+	// http://restapi.amap.com/v3/geocode/regeo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&radius=1000&extensions=all&location=116.310003,39.991957
+}
+function addMarker(lo) {
+
+	if (marker) {
+		marker.setMap(null);
+		marker = null;
+	}
+	marker = new AMap.Marker({
+		icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+		position: lo
+	});
+	marker.setMap(map);
+}
+
+
+
+var clickEventListener = map.on('click', function(e) {
+	var lo = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+	console.log(lo);
+	addMarker(lo.split(','));
+	xxyy(lo.split(','));
+	$.ajax({
+		url: 'http://restapi.amap.com/v3/geocode/regeo?output=xml&key=d66a257e9444723ca2deb0ce325ebed6&radius=1000&extensions=all&location=' + lo,
+		type: 'GET',
+		dataType: 'xml',
+		success: function(xml) {
+			var dizhi = $(xml).find('formatted_address').text();
+		document.getElementById('didian').value = dizhi
+		}
+	});
 });
-       
-       
-       
-       
-    });
-    
-    
-    
+
+AMap.event.addDomListener(document.getElementById('setCenter'), 'click', dianji);
+
 </script>
 </body>
 </html>
