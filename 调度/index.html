@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jQuery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/laydate.dev.js" type="text/javascript" charset="utf-8"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/style1.css" />
+	</head>
+
+	<body>
+		<!-- 车辆信息开始  -->
+		<div id="car" class="warp-50 flot-l">
+			<div class="seach">
+				<div class="seachwrap">
+					<input type="text" id="" value="" placeholder="车牌号" class="input70 search-text" />
+					<input type="button" id="" value="查询" class="input30 search-btn" />
+				</div>
+			</div>
+			<div class="rolling" style="height: 230px;">
+
+			</div>
+		</div>
+		<!-- 车辆信息结束  -->
+		<!-- 货物信息开始  -->
+		<div id="cargo" class="warp-50 flot-r">
+			<div class="seach">
+				<div class="tab flot-l">
+					<a id="select" href="javascript:void(0)">出口</a>
+					<a href="javascript:void(0)">进口</a>
+				</div>
+				<div class="seachwrap flot-r">
+					<input type="text" id="" value="" placeholder="委托单位" class="input70 search-text" />
+					<input type="button" id="" value="查询" class="input30 search-btn" />
+				</div>
+			</div>
+			<div class="rolling" style="height: 230px;">
+				<table id="jinkou-one" class="table-one" cellspacing="1" cellpadding="0">
+					<tr>
+						<th>委托单位</th>
+						<th>发货单位</th>
+						<th>货物名称</th>
+						<th>件数</th>
+						<th>包装</th>
+						<th>重量</th>
+						<th>体积</th>
+					</tr>
+					<tr>
+
+				</table>
+
+				<table id="chukou-one" class="table-one" cellspacing="1" cellpadding="0">
+					<tr>
+						<th>委托单位</th>
+						<th>发货单位</th>
+						<th>货物名称</th>
+						<th>件数</th>
+						<th>包装</th>
+						<th>重量</th>
+						<th>体积</th>
+					</tr>
+
+				</table>
+
+			</div>
+
+		</div>
+		<!-- 货物信息结束  -->
+		<!-- 调度器信息开始  -->
+		<div id="scheduler" class="warp-100">
+
+			<div id="receivecar" class="receivecar" >
+				<a href="javascript:void(0)" class="delete"></a>
+				<span class="tishi">请拖入车辆</span>
+			</div>
+
+			<div id="cargoone" class="cargoone">
+				<a href="javascript:void(0)" class="delete"></a>
+				<span class="tishi">请拖入货物</span>
+			</div>
+
+			<div id="cargotwo" class="cargotwo">
+				<a href="javascript:void(0)" class="delete"></a>
+	     		<span class="tishi">请拖入货物</span>
+			</div>
+
+			<input id="receivetime" class="receivetime" type="text" placeholder="日期" name="" id="" value="" />
+
+			<input type="button" id="chaozhong" class="btn-diaodu " value="超重 " />
+			<input type="button" id="paiche" class="btn-diaodu btn-grenn" value="派车 " />
+			<input type="button" id="reset" class="btn-diaodu btn-white" value="重置 " />
+
+		</div>
+		<!-- 调度器信息结束  -->
+		<!-- 清单信息开始  -->
+		<div id="listing" class="warp-100" style="height: 300px;">
+
+			<div class="seach">
+				<div id="list-tab">
+					<div class="tab flot-l">
+						<a id="select1" href="javascript:void(0)">出口</a>
+						<a href="javascript:void(0)">进口</a>
+					</div>
+				</div>
+				<input type="text" class="list-text" id="PlateNumber" placeholder="车牌号" value="" />
+				<input type="text" class="list-text" id="BeginDate" placeholder="派车日期" value="" />
+				<input type="text" class="list-text" id="CustomerName" placeholder="委托单位" value="" />
+				<input type="text" class="list-text" id="FleetCode" placeholder="业务单号" value="" />
+				<input type="text" class="list-text" id="Weight" placeholder="重量" value="" />
+				<input type="text" class="list-text" id="GoodsName" placeholder="品名" value="" />
+				<input type="text" class="list-text" id="No" placeholder="箱号" value="" />
+				<input type="radio" name="Status" id="Status1" value="" /><span class="span-one">在运业务</span>
+				<input type="radio" name="Status" id="Status2" value="" /><span class="span-one">已派业务</span>
+				<input type="button" id="listingseach" class="btn-chaxun btn-red" value="查询" />
+			</div>
+
+			<div class="rolling" style="height: 240px;">
+
+			</div>
+
+		</div>
+
+		<!-- 清单信息结束  -->
+
+		<!-- 货物的箱子信息开始  -->
+		<div class="cargo-box" id="cargo-box" FleetID="" >
+			<div class="seach">
+				<a id="close" href="javascript:void(0)"></a>
+				<div class="seachwrap w-90">
+					<input type="text" id="" value="" placeholder="箱号" class="input70 search-text" />
+					<input type="button" id="" value="查询" class="input30 search-btn" />
+				</div>
+			</div>
+			<div class="rolling" style="height: 90%;">
+				<table id="sea-box" class="table-one" cellspacing="1" cellpadding="0">
+					<tr>
+						<th>箱号</th>
+						<th>箱型</th>
+						<th>提箱点</th>
+						<th>验货点</th>
+					</tr>
+
+				</table>
+			</div>
+
+		</div>
+
+		<!-- 货物的箱子信息结束  -->
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
