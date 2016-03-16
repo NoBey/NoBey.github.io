@@ -17,7 +17,7 @@ body{
 }
 .warp-50{
 	width: 47%;
-	height: 300px;
+	height: 230px;
 	background: #fff;
 	border: 1px solid #999;
 	
@@ -134,7 +134,7 @@ body{
 }
 .rolling{
 	
-	width: 100%;
+	width: 99%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	
@@ -153,8 +153,8 @@ body{
 }
 
 #scheduler{
-	height: 70px;
-	padding-top: 30px;
+	height: 50px;
+	padding-top: 5px;
 }
 .tishi{
 	text-indent: 10px;
@@ -177,7 +177,7 @@ margin-left: 10px;
 }
 .receivetime{
 	
-	width: 70px;
+	width: 80px;
 	border: 1px solid #999999;
 	height: 32px;
 	float: left;
@@ -305,13 +305,14 @@ margin-left: 10px;
 	line-height: 30px;
 	padding: 0 10px;
 	border: 1px solid #51C45E;
+	border-radius:6px ;
 }
 .car-wrap .chepai-wrap{
 	padding: 2px;
 	border: 1px #999 solid;
 	float: left;
 	margin-left: 10px;
-	border-radius:3px ;
+	border-radius:6px ;
 }
 
 
@@ -346,14 +347,28 @@ margin-left: 10px;
 }
 
 
+a{
+   cursor: default; 
+}
 
+.cursor-pointer{
+	cursor: pointer; 
+}
+input{
+	border-radius:6px ;
+	border: 1px #999999 solid;
+}
 
+.border-6{
+	border-radius:6px ;
 
+}
+.trbox1{
+	display: none
+}
 
-
-
-
-
-
+.trbox2{
+	display:none;
+}
 
 
