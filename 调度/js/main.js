@@ -20,7 +20,7 @@ var car = function() {
 
 			for (var i = 0; i < carlist["list"].length; i++) {
 
-				div = '<div' + ' TruckID=' + carlist["list"][i]['TruckID'] + ' class="car-wrap" ' + "ApprovedLoad=" + carlist["list"][i]['ApprovedLoad'] + '><img src="img/car.png"/> <div class="chepai-wrap"><a href="javascript:void(0)" class="chepai">' + carlist["list"][i]['PlateNumber'] + '</a></div><div class="identity"><span>' + carlist["list"][i]['DriverName'] + '</span><span>' + carlist["list"][i]['DriverTel'] + '</span></div>' + "</div>"
+				div = '<div' + ' TruckID=' + carlist["list"][i]['TruckID'] + ' class="car-wrap" ' + "ApprovedLoad=" + carlist["list"][i]['ApprovedLoad'] + '><img src="img/car.png"/> <div class="chepai-wrap"><a  class="chepai">' + carlist["list"][i]['PlateNumber'] + '</a></div><div class="identity"><span>' + carlist["list"][i]['DriverName'] + '</span><span>' + carlist["list"][i]['DriverTel'] + '</span></div>' + "</div>"
 
 				$('#car .rolling').append(div)
 			}
@@ -34,10 +34,22 @@ var car = function() {
 					i++
 				}
 			)
-			$('.car-wrap').attr("draggable", "true").bind('dragstart', function(event) {
+			$('.car-wrap').attr("draggable", "true").bind('dragstart', function(event) {                                                                                                                                                                                                                          
+				var event = event|| window.event
+			   // event.stopPropagation();
+			    //event.preventDefault()
 				console.log(event.target)
 				localStorage.car = $(event.target).parents(".car-wrap").attr('id')
 			})
+			
+			$('.car-wrap').children().attr("draggable", "true").bind("mousedown",function(event){
+			var event = event|| window.event
+            //event.preventDefault()
+           
+          // event.stopPropagation()
+           });
+          
+			
 		}
 		return car.start()
 	}
@@ -57,6 +69,9 @@ var cargo = function() {
 				cargo.creatlist(result, '#chukou-one')
 			})
 			cargo.search()
+			sessionStorage.page1=1
+			sessionStorage.page2=1
+			
 			console.log("cargo对象已启动")
 		}
 		cargo.search = function() {
@@ -88,6 +103,7 @@ var cargo = function() {
 					$('#select').attr('id', '')
 					e.target.id = 'select'
 					if (e.target.innerHTML == "进口") {
+						
 						$('#jinkou-one').show()
 						$('#chukou-one').hide()
 					}
@@ -95,6 +111,13 @@ var cargo = function() {
 						$('#jinkou-one').hide()
 						$('#chukou-one').show()
 					}
+					if($('#select').attr("wan")==1){
+							$("#jiazai").html("全部加载")
+						}
+					if($('#select').attr("wan")!=1){
+							$("#jiazai").html("加载更多")
+						}
+					
 				}
 			)
 		}
@@ -109,20 +132,66 @@ var cargo = function() {
 					$('#sea-box').append('<tr FleetContainerID=' + collet["list"][i]["FleetContainerID"] + ' id="cargo-id' + (i + 1) + '"wt=' + collet["list"][i]["Weight"] + " size=" + collet["list"][i]["Size"] + '><td>' + collet["list"][i]["No"] + '</td><td>' + collet["list"][i]['Size'] + '</td><td>' + collet["list"][i]['ApproachLocation'] + '</td><td>' + collet["list"][i]['GoodsInspectionAddress'] + '</td> </tr>')
 				}
 				$('#sea-box tr').attr("draggable", "true").bind('dragstart', function(event) {
+				
+					var event =event||window.event
+						//event.stopPropagation()
+						//event.prevent
 					localStorage.cargo = event.target.id
 					console.log(localStorage.cargo)
+			
 				})
+				
+				
+				
+//				$('#sea-box tr a').attr("draggable", "false").bind('dragstart', function(event) {
+//					event.preventDefault()
+//					localStorage.cargo = event.target.id
+//					console.log(localStorage.cargo)
+//				})
 			})
 		}
 		cargo.creatlist = function(list, id) {
 			//http://www.e56ol.com/team/fleet?CorpID=1&BizType=0&CustomerName=
 			//http://www.e56ol.com/team/fleet?CorpID=1&BizType=1&CustomerName=
-			$(id + " tr:first").siblings().remove()
+			if (arguments[2]!=1) {
+				$(id + " tr:first").siblings().remove()
+			}
+			
 			var tr = ''
 			for (var i = 0; i < list["list"].length; i++) {
 				tr = '<tr><td><a href="javascript:void(0)" FleetID="' + list['list'][i]['FleetID'] + '">' + list['list'][i]['CustomerName'] + '</a></td><td>' + list['list'][i]['DeliverPartyName'] + '</td><td>' + list['list'][i]['GoodsName'] + '</td><td>' + list['list'][i]['Qty'] + '</td><td>' + list['list'][i]['PackageName'] + '</td><td>' + list['list'][i]['Weight'] + '</td><td>' + list['list'][i]['Volume'] + '</td></tr>'
 				$(id).append(tr)
 			}
+			if ($('#jiazai').length<1) {
+				$(id).parent().append('<div id="jiazai" class="cursor-pointer" style="width: 92%;height: 30px;text-align: center; display: block;background: #DDDDDD;line-height: 30px;margin: 10px 4%">加载更多</div>')
+			}
+
+			$('#jiazai').click(function(){
+				//$('#jiazai').remove()
+				 if( $('#select').html()=='出口'){
+				 	if(list["pagecount"]==sessionStorage.page1){
+				 		$('#jiazai').html("全部加载")
+				 		$('#select').attr('wan','1')
+				 		return
+				 	}
+				 	$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=0&CustomerName=", function(result) {
+				cargo.creatlist(result, '#chukou-one',1)
+				sessionStorage.page1=sessionStorage.page1+1
+			})
+				 }
+				 if( $('#select').html()=='进口'){
+				 	if(list["pagecount"]==sessionStorage.page2){
+				 		$('#jiazai').html("全部加载")
+				 		$('#select').attr('wan','1')
+				 		return
+				 	}
+				 		$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=1&CustomerName=", function(result) {
+				cargo.creatlist(result, '#jinkou-one',1)
+				sessionStorage.page2=sessionStorage.page2+1
+			})
+				 	
+				 }
+			})
 			cargo.table()
 		}
 		cargo.table = function() {
@@ -180,8 +249,16 @@ var scheduler = function() {
 			var element = document.getElementById('receivecar')
 			element.ondragover = function(event) {
 				event.preventDefault()
+				$('#receivecar').css('background','#DDDDDD')
+			}
+			element.ondragleave =function(event){
+					var event = event|| window.event
+					event.preventDefault()
+				$('#receivecar').css('background','')
 			}
 			element.ondrop = function(event) {
+				var event = event|| window.event
+			   $('#receivecar').css('background','')
 				event.preventDefault();
 				if (localStorage.car == '') {
 					return
@@ -207,9 +284,18 @@ var scheduler = function() {
 		scheduler.cargoone = function() {
 			var element = document.getElementById('cargoone')
 			element.ondragover = function(event) {
+					var event = event|| window.event
 				event.preventDefault()
+				$('#cargoone').css('background','#DDDDDD')
+			}
+			element.ondragleave =function(event){
+				var event = event|| window.event
+					event.preventDefault()
+				$('#cargoone').css('background','')
 			}
 			element.ondrop = function(event) {
+				var event = event|| window.event
+				$('#cargoone').css('background','')
 				event.preventDefault();
 				if (localStorage.cargo == '') {
 					return
@@ -234,9 +320,18 @@ var scheduler = function() {
 		scheduler.cargotwo = function() {
 			var element = document.getElementById('cargotwo')
 			element.ondragover = function(event) {
+								var event = event|| window.event
 				event.preventDefault()
+			    $('#cargotwo').css('background','#dddddd')
+			}
+			element.ondragleave =function(event){
+								var event = event|| window.event
+					event.preventDefault()
+				$('#cargotwo').css('background','')
 			}
 			element.ondrop = function(event) {
+								var event = event|| window.event
+			    $('#cargotwo').css('background','')
 				event.preventDefault();
 				if (localStorage.cargo == '') {
 					return
@@ -518,6 +613,7 @@ $(window).resize(function() {
 	
 	
 }
+
 
 
 //此js入口文件--------------------------------------------------启动函数

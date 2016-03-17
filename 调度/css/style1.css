@@ -208,7 +208,7 @@ margin-left: 10px;
 .delete{
 	float: right;
 	position: relative;
-	background: url(../img/close.jpg);
+	background: url(../img/close.png);
 	width: 24px;
 	height: 24px;
 	top: -12px;
@@ -224,6 +224,7 @@ margin-left: 10px;
 	background-color: #F5F5F5;
 	width: 92%;
 	margin: 4%;
+	margin-bottom: 0px;
 }
 .table-one th {
 	border-width: 1px;
