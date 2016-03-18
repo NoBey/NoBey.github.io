@@ -407,7 +407,10 @@ var scheduler = function() {
 						return
 					}
 					if (result['status'] == 1) {
-						alert(result['content'])
+							alert(result['content'])
+						$('.delete').hide().siblings('.tishi').show().siblings('div').remove()
+				$("#receivetime").val('') 
+			 		
 						var BizType
 						if ($('#select1').html() == '进口') {
 							BizType = 1
