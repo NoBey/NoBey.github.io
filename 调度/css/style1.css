@@ -280,8 +280,9 @@ margin-left: 10px;
 .base-other-table tr.table-first-tr{ background-color:#f5f5f5}
 .base-other-table tr td{border:1px solid #ddd; padding:0;}
 .base-other-table tr td span:first-child{border-bottom:2px solid #ddd;}
-.base-other-table tr td span{ width:100%; height:34px; display:block; /*border:1px solid #999;*/ }
-.base-other-table tr td span.man{ /*border-color:#f23f3f;*/ background-color:green;}
+.base-other-table tr td span{ width:100%; height:34px; display:block; /*border:1px solid #999;*/ line-height: 34px;}
+.base-other-table tr td span.man{ /*border-color:#f23f3f;*/ background-color:green;color: white;}
+.base-other-table tr td span.man1{ /*border-color:#f23f3f;*/ background-color:red;color: white;}
 .base-other-table tr td a{ color:#378de4;text-decoration: none;}
 .base-other-table tr td button{border-radius:6px;width: 50px;height: 25px;border: 0px;margin-left: 10px;color: white;}
 

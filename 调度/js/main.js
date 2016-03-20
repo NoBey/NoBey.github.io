@@ -62,16 +62,26 @@ var cargo = function() {
 		cargo.start = function() {
 			cargo.detele()
 			cargo.tab()
+			sessionStorage.page1=1
+			sessionStorage.page2=1
 			$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=1&CustomerName=", function(result) {
 				cargo.creatlist(result, '#jinkou-one')
+			 if(result["pagecount"]==sessionStorage.page1){
+					 		$('#jiazai').html("全部加载")
+					 	$('#cargo .tab  a').eq(0).attr('wan','1')
+					 }
 			})
 			$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=0&CustomerName=", function(result) {
 				cargo.creatlist(result, '#chukou-one')
+				 if(result["pagecount"]==sessionStorage.page2){
+					 		$('#jiazai').html("全部加载")
+					  	$('#cargo .tab a').eq(1).attr('wan','1')
+					 }
 			})
 			cargo.search()
-			sessionStorage.page1=1
-			sessionStorage.page2=1
 			
+			
+			$("#jiazai").trigger("click",'ready');
 			console.log("cargo对象已启动")
 		}
 		cargo.search = function() {
@@ -157,41 +167,67 @@ var cargo = function() {
 				$(id + " tr:first").siblings().remove()
 			}
 			
+			
+			
+			
+			
 			var tr = ''
 			for (var i = 0; i < list["list"].length; i++) {
 				tr = '<tr><td><a href="javascript:void(0)" FleetID="' + list['list'][i]['FleetID'] + '">' + list['list'][i]['CustomerName'] + '</a></td><td>' + list['list'][i]['DeliverPartyName'] + '</td><td>' + list['list'][i]['GoodsName'] + '</td><td>' + list['list'][i]['Qty'] + '</td><td>' + list['list'][i]['PackageName'] + '</td><td>' + list['list'][i]['Weight'] + '</td><td>' + list['list'][i]['Volume'] + '</td></tr>'
 				$(id).append(tr)
 			}
-			if ($('#jiazai').length<1) {
+
+
+
+
+
+
+if ($('#jiazai').length<1) {
 				$(id).parent().append('<div id="jiazai" class="cursor-pointer" style="width: 92%;height: 30px;text-align: center; display: block;background: #DDDDDD;line-height: 30px;margin: 10px 4%">加载更多</div>')
 			}
 
+
+
+
+
+			$('#jiazai').unbind('click')
 			$('#jiazai').click(function(){
+								
+			
 				//$('#jiazai').remove()
 				 if( $('#select').html()=='出口'){
-				 	if(list["pagecount"]==sessionStorage.page1){
+				 	if(list["pagecount"]<=sessionStorage.page1){
 				 		$('#jiazai').html("全部加载")
 				 		$('#select').attr('wan','1')
 				 		return
 				 	}
-				 	$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=0&CustomerName=", function(result) {
-				cargo.creatlist(result, '#chukou-one',1)
-				sessionStorage.page1=sessionStorage.page1+1
+				 	$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=0&CustomerName="+'&p='+sessionStorage.page1, function(result) {
+				cargo.creatlist(result, '#chukou-one',1)				
+				 if(result["pagecount"]<=sessionStorage.page1){
+				 		$('#jiazai').html("全部加载")
+				 }
 			})
+				 sessionStorage.page1= Number(sessionStorage.page1)+Number(1)
 				 }
 				 if( $('#select').html()=='进口'){
-				 	if(list["pagecount"]==sessionStorage.page2){
+				 	if(list["pagecount"]<=sessionStorage.page2){
 				 		$('#jiazai').html("全部加载")
 				 		$('#select').attr('wan','1')
 				 		return
 				 	}
-				 		$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=1&CustomerName=", function(result) {
+				 		$.get("http://www.e56ol.com/team/fleet?CorpID=1&BizType=1&CustomerName="+'&p='+sessionStorage.page2, function(result) {
 				cargo.creatlist(result, '#jinkou-one',1)
-				sessionStorage.page2=sessionStorage.page2+1
+					 if(result["pagecount"]<=sessionStorage.page2){
+					 		$('#jiazai').html("全部加载")
+					 }
+		
 			})
-				 	
+					sessionStorage.page2= Number(sessionStorage.page2)+Number(1)	
 				 }
 			})
+			
+			
+			
 			cargo.table()
 		}
 		cargo.table = function() {
@@ -301,6 +337,7 @@ var scheduler = function() {
 					return
 				}
 				if ($('#cargotwo div').attr('size') == 'L') {
+				 $('#cargoone').css('background','#dddddd')
 					alert("不能再放了")
 					return
 				}
@@ -337,6 +374,7 @@ var scheduler = function() {
 					return
 				}
 				if ($('#cargoone div').attr('size') == 'L') {
+				 $('#cargotwo').css('background','#dddddd')
 					alert("不能再放了")
 					return
 				}
@@ -371,7 +409,17 @@ var scheduler = function() {
 			if (carheary < Number(cargoone + cargotow)) {
 				$('#chaozhong').addClass("btn-red")
 			}
-		}
+				 $('#cargotwo').css('background','')
+				  $('#cargoone').css('background','')
+
+			if($('#cargoone div').attr('size')=='L'){
+				  $('#cargotwo').css('background','#dddddd')
+			}
+			if($('#cargotwo div').attr('size')=='L'){
+					  $('#cargoone').css('background','#dddddd')
+			}
+		
+		   }
 		scheduler.paiche = function() {
 			$('#paiche').click(function() {
 				var TruckID = $('#receivecar .car-wrap').attr('truckid')
@@ -480,15 +528,35 @@ var listing = function() {
 			)
 		}
 		listing.creatlist = function(list) {
+			
+			var  shuju =[,]
+if ($('#select1').html() == '进口') {
+	shuju[0]='已送货'
+	shuju[1]='已回空'
+}
+if ($('#select1').html() == '出口') {
+	shuju[0]='已提货 '
+	shuju[1]='已进场'
+}			
 			$("#listing  .rolling").html('')
 			localStorage.list = list['list']
 			for (key in list['list']) {
-				var table = '<p class="table-time"><span>' + key + '</span></p><table class="base-other-table"><tbody><tr><td>车号</td><td>司机</td><td>联系电话</td><td>车载状态</td><td>已提箱</td><td>已到场</td><td>已收货</td><td>回空时间</td><td>散货</td><td>操作</td></tr>'
+				var table = '<p class="table-time"><span>' + key + '</span></p><table class="base-other-table"><tbody><tr><td>车号</td><td>司机</td><td>联系电话</td><td>车载状态</td><td>已提箱</td><td>已到场</td><td>'+shuju[0] +'</td><td>'+shuju[1] +'</td><td>散货</td><td>操作</td></tr>'
 				for (i = 0; i < list['list'][key].length; i++) {
 					var Container = list['list'][key][i]['Container'].length
+					var Containersize
+					
+					if (list['list'][key][i]['ContainerSize']==1) {
+						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man1" >空</span>'
+					}
+					if (list['list'][key][i]['ContainerSize']==2) {
+						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man" >'+ list['list'][key][i]['Container'][1]['No']+'</span>'
+					}
+					
 					var tr = '<tr ' + 'i=' + Container + ' truckid=' + list['list'][key][i]['TruckID'] + ' DispatchID=' + list['list'][key][i]['DispatchID'] + '><td >' + list['list'][key][i]['PlateNumber'] +
 						'</td><td >' + list['list'][key][i]['DriverName'] + '</td><td >' +
-						list['list'][key][i]['ContactInfo'] + '</td><td><span class="man"></span><span class="man" ></span></td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td>' + '<td>3</td>	<td >位置 费4用 <a href="http://www.baidu.com">相关文件</a><button class="btn-grenn">编辑</button><button class="btn-red">删除</button>'
+						list['list'][key][i]['ContactInfo'] + '</td><td>'+ Containersize +'</td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td>' + '<td>3</td>	<td >位置 费4用 <a href="http://www.baidu.com">相关文件</a><button class="btn-grenn">编辑</button><button class="btn-red">删除</button>'
+					
 					if (Container == 1) {
 						list['list'][key][i]['Container'][0]
 						var trbox = '<div class="trbox1"  fleetcontainerid="' + list['list'][key][i]['Container'][0]['FleetContainerID'] + '" wt="' + list['list'][key][i]['Container'][0]['Weight'] + '">箱号:' + list['list'][key][i]['Container'][0]['No'] + '重量:' + list['list'][key][i]['Container'][0]['Weight'] + '</div>'
@@ -615,11 +683,18 @@ $(window).resize(function() {
 });	
 	
 	
+	
+	
+			
+			
+	
 }
 
 
+$(document).ready(
+	main()
 
+)
 //此js入口文件--------------------------------------------------启动函数
 
-main()
 
