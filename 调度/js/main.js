@@ -547,11 +547,18 @@ if ($('#select1').html() == '出口') {
 					var Containersize
 					
 					if (list['list'][key][i]['ContainerSize']==1) {
-						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man1" >空</span>'
+						Containersize ='<span class="man2">'+ list['list'][key][i]['Container'][0]['No']+'</span>'
 					}
 					if (list['list'][key][i]['ContainerSize']==2) {
+						if (Container==1) {
+						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man1" >空</span>'
+					}
+					if (Container==2) {
 						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man" >'+ list['list'][key][i]['Container'][1]['No']+'</span>'
 					}
+					}
+					
+					
 					
 					var tr = '<tr ' + 'i=' + Container + ' truckid=' + list['list'][key][i]['TruckID'] + ' DispatchID=' + list['list'][key][i]['DispatchID'] + '><td >' + list['list'][key][i]['PlateNumber'] +
 						'</td><td >' + list['list'][key][i]['DriverName'] + '</td><td >' +
@@ -611,14 +618,14 @@ if ($('#select1').html() == '出口') {
 				$('#receivecar .tishi').hide();
 				if ($(this).parents("tr").attr('i') == 1) {
 					$('#cargoone').children('span').hide()
-					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").show()).children('a').show()
+					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").clone().show()).children('a').show()
 
 				}
 				if ($(this).parents("tr").attr('i') == 2) {
 					$('#cargoone').children('span').hide()
 					$('#cargotwo').children('span').hide()
-					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").show()).children('a').show()
-					$('#cargotwo').append($(this).parents("tr td:last").children(".trbox2").show()).children('a').show()
+					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").clone().show()).children('a').show()
+					$('#cargotwo').append($(this).parents("tr td:last").children(".trbox2").clone().show()).children('a').show()
                    }
         })
 
