@@ -40,6 +40,7 @@ var car = function() {
 				}
 			)
 			$('.car-wrap').attr("draggable", "true")
+			$('.car-wrap').find('img').attr("draggable", 'false')
 		//	$('.car-wrap').attr("draggable", "true").bind('dragstart', function(event) {                                                                                                                                                                                                                          
 		//		var event = event|| window.event
 			   // event.stopPropagation();
