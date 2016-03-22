@@ -274,6 +274,7 @@ var scheduler = function() {
 						$(localStorage.cargobox).show()
 					}
 					$(e.target).hide()
+					$(e.target).parent().removeAttr('DispatchID')
 					$(e.target).siblings('.car-wrap').remove()
 					$(e.target).siblings('div').remove()
 					$(e.target).siblings('.tishi').show()
@@ -427,6 +428,22 @@ var scheduler = function() {
 				var idtwo = $('#cargotwo div').attr('fleetcontainerid')
 				var BeginDate = $('#receivetime').val()
 				var id
+				var DispatchID=''
+				if($('#cargoone').attr('DispatchID')!=undefined || $('#cargotwo').attr('DispatchID')!=undefined || $('#receivecar').attr('DispatchID')!=undefined){
+					if ($('#cargoone').attr('DispatchID')!=undefined) {
+						DispatchID=$('#cargoone').attr('DispatchID')
+					}
+					if ($('#cargotwo').attr('DispatchID')!=undefined) {
+						DispatchID=$('#cargotwo').attr('DispatchID')
+					}
+					if ($('#receivecar').attr('DispatchID')!=undefined) {
+						DispatchID=$('#receivecar').attr('DispatchID')
+					}
+					
+				}
+				
+				
+				
 					//var FleetContainerID = idone+","+idtwo
 				if (TruckID == undefined) {
 					TruckID = ''
@@ -448,7 +465,7 @@ var scheduler = function() {
 					alert('请选择日期')
 					return
 				}
-				$.get("http://www.e56ol.com/team/dispatchAdd?CorpID=1&DispatchID=&TruckID=" + TruckID + "&FleetContainerID=" + id + "&BeginDate=" + BeginDate, function(result) {
+				$.get("http://www.e56ol.com/team/dispatchAdd?CorpID=1&DispatchID= "+ DispatchID +"&TruckID=" + TruckID + "&FleetContainerID=" + id + "&BeginDate=" + BeginDate, function(result) {
 					console.log(result)
 					if (result['status'] == 0) {
 						alert(result['error'])
@@ -489,6 +506,9 @@ var scheduler = function() {
 			$('#reset').click(function() {
 				$('.delete').hide().siblings('.tishi').show().siblings('div').remove()
 				$("#receivetime").val('')
+                $("#cargoone").removeAttr("DispatchID")
+                $("#cargotwo").removeAttr("DispatchID")
+                $("#receivecar").removeAttr("DispatchID")
 			})
 		}
 		return scheduler.start()
@@ -545,24 +565,38 @@ if ($('#select1').html() == '出口') {
 				for (i = 0; i < list['list'][key].length; i++) {
 					var Container = list['list'][key][i]['Container'].length
 					var Containersize
-					
+					var time1,time2,time3,time4
 					if (list['list'][key][i]['ContainerSize']==1) {
 						Containersize ='<span class="man2">'+ list['list'][key][i]['Container'][0]['No']+'</span>'
+						time1  = '<span class="man3">'+ list['list'][key][i]['Container'][0]['Time1']+'</span>'
+						time2  = '<span class="man3">'+ list['list'][key][i]['Container'][0]['Time2']+'</span>'
+						time3  = '<span class="man3">'+ list['list'][key][i]['Container'][0]['Time3']+'</span>'
+						time4  = '<span class="man3">'+ list['list'][key][i]['Container'][0]['Time4']+'</span>'
+					
 					}
 					if (list['list'][key][i]['ContainerSize']==2) {
 						if (Container==1) {
 						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man1" >空</span>'
-					}
+						time1 ='<span >'+ list['list'][key][i]['Container'][0]['Time1']+'</span><span ></span>'
+						time2 ='<span >'+ list['list'][key][i]['Container'][0]['Time2']+'</span><span ></span>'
+						time3 ='<span >'+ list['list'][key][i]['Container'][0]['Time3']+'</span><span ></span>'
+						time4 ='<span >'+ list['list'][key][i]['Container'][0]['Time4']+'</span><span ></span>'
+						}
 					if (Container==2) {
 						Containersize ='<span class="man">'+ list['list'][key][i]['Container'][0]['No']+'</span><span class="man" >'+ list['list'][key][i]['Container'][1]['No']+'</span>'
+						time1 ='<span >'+ list['list'][key][i]['Container'][0]['time1']+'</span><span >'+ list['list'][key][i]['Container'][1]['time1']+'</span>'
+						time2 ='<span >'+ list['list'][key][i]['Container'][0]['time2']+'</span><span >'+ list['list'][key][i]['Container'][1]['time2']+'</span>'
+						time3 ='<span >'+ list['list'][key][i]['Container'][0]['time3']+'</span><span >'+ list['list'][key][i]['Container'][1]['time3']+'</span>'
+						time4 ='<span >'+ list['list'][key][i]['Container'][0]['time4']+'</span><span >'+ list['list'][key][i]['Container'][1]['time4']+'</span>'
+					
 					}
 					}
 					
 					
 					
-					var tr = '<tr ' + 'i=' + Container + ' truckid=' + list['list'][key][i]['TruckID'] + ' DispatchID=' + list['list'][key][i]['DispatchID'] + '><td >' + list['list'][key][i]['PlateNumber'] +
+					var tr = '<tr '+'BeginDate='+list['list'][key][i]['BeginDate']  + ' i=' + Container + ' truckid=' + list['list'][key][i]['TruckID'] + ' DispatchID=' + list['list'][key][i]['DispatchID'] + '><td >' + list['list'][key][i]['PlateNumber'] +
 						'</td><td >' + list['list'][key][i]['DriverName'] + '</td><td >' +
-						list['list'][key][i]['ContactInfo'] + '</td><td>'+ Containersize +'</td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td><td><span></span><span></span></td>' + '<td>3</td>	<td >位置 费4用 <a href="http://www.baidu.com">相关文件</a><button class="btn-grenn">编辑</button><button class="btn-red">删除</button>'
+						list['list'][key][i]['ContactInfo'] + '</td><td>'+ Containersize +'</td><td>'+time1+'</td><td>'+time2+'</td><td>'+ time3+'</td><td>'+time4+'</td>' + '<td>3</td>	<td >位置 费4用 <a href="http://www.baidu.com">相关文件</a><button class="btn-grenn">编辑</button><button class="btn-red">删除</button>'
 					
 					if (Container == 1) {
 						list['list'][key][i]['Container'][0]
@@ -610,20 +644,20 @@ if ($('#select1').html() == '出口') {
 					return
 				}
 
-               $('#receivetime').val($(this).parents('.base-other-table').prev().children('span').html())
+               $('#receivetime').val( $(this).parents("tr").attr('BeginDate'))
 				var car = '<div truckid="' + $(this).parents("tr").attr('truckid') + '" class="car-wrap" approvedload="9999"  draggable="true" style="margin: 0px;"><img src="img/car.png"> <div class="chepai-wrap"><a href="javascript:void(0)" class="chepai">' +
 					$(this).parents("tr").children().eq(0).html() + '</a></div><div class="identity" style="display: block;"><span>' + $(this).parents("tr").children().eq(1).html() + '</span><span>' + $(this).parents("tr").children().eq(2).html() + '</span></div></div>'
 				$('#receivecar').children('a').show()
-				$('#receivecar').append(car)
+				$('#receivecar').append(car).attr('DispatchID',$(this).parents("tr").attr('DispatchID'))
 				$('#receivecar .tishi').hide();
 				if ($(this).parents("tr").attr('i') == 1) {
-					$('#cargoone').children('span').hide()
+					$('#cargoone').attr('DispatchID',$(this).parents("tr").attr('DispatchID')).children('span').hide()
 					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").clone().show()).children('a').show()
 
 				}
 				if ($(this).parents("tr").attr('i') == 2) {
-					$('#cargoone').children('span').hide()
-					$('#cargotwo').children('span').hide()
+					$('#cargoone').attr('DispatchID',$(this).parents("tr").attr('DispatchID')).children('span').hide()
+					$('#cargotwo').attr('DispatchID',$(this).parents("tr").attr('DispatchID')).children('span').hide()
 					$('#cargoone').append($(this).parents("tr td:last").children(".trbox1").clone().show()).children('a').show()
 					$('#cargotwo').append($(this).parents("tr td:last").children(".trbox2").clone().show()).children('a').show()
                    }
@@ -655,14 +689,6 @@ if ($('#select1').html() == '出口') {
 
 		listing.other = function() {
 
-			$('#Status1').next().click(function() {
-				$('#Status2').attr("checked", false)
-				$("#Status1").attr("checked", true);
-			})
-			$('#Status2').next().click(function() {
-				$('#Status1').attr("checked", false)
-				$("#Status2").attr("checked", true);
-			})
 		}
 
 

@@ -284,6 +284,7 @@ margin-left: 10px;
 .base-other-table tr td span.man{ /*border-color:#f23f3f;*/ background-color:green;color: white;}
 .base-other-table tr td span.man1{ /*border-color:#f23f3f;*/ background-color:red;color: white;}
 .base-other-table tr td span.man2{ /*border-color:#f23f3f;*/ background-color:green;color: white;height: 68px;line-height: 68px;}
+.base-other-table tr td span.man3{ /*border-color:#f23f3f;*/ height: 68px;line-height: 68px;}
 .base-other-table tr td a{ color:#378de4;text-decoration: none;}
 .base-other-table tr td button{border-radius:6px;width: 50px;height: 25px;border: 0px;margin-left: 10px;color: white;}
 
