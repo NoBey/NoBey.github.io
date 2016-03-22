@@ -465,7 +465,7 @@ var scheduler = function() {
 					alert('请选择日期')
 					return
 				}
-				$.get("http://www.e56ol.com/team/dispatchAdd?CorpID=1&DispatchID= "+ DispatchID +"&TruckID=" + TruckID + "&FleetContainerID=" + id + "&BeginDate=" + BeginDate, function(result) {
+				$.get("http://www.e56ol.com/team/dispatchAdd?CorpID=1&DispatchID="+ DispatchID +"&TruckID=" + TruckID + "&FleetContainerID=" + id + "&BeginDate=" + BeginDate, function(result) {
 					console.log(result)
 					if (result['status'] == 0) {
 						alert(result['error'])
