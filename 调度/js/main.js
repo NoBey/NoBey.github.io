@@ -31,23 +31,27 @@ var car = function() {
 			$('.car-wrap').each(
 				function() {
 					$(this).attr('id', 'car-id' + i)
+					$(this)[0].ondragstart=function(event){
+						var event = event|| window.event
+				        event.dataTransfer.setData("Text",event.target.id)
+				        localStorage.car = $(event.target).attr('id')
+					}
 					i++
 				}
 			)
-			$('.car-wrap').attr("draggable", "true").bind('dragstart', function(event) {                                                                                                                                                                                                                          
-				var event = event|| window.event
+			$('.car-wrap').attr("draggable", "true")
+		//	$('.car-wrap').attr("draggable", "true").bind('dragstart', function(event) {                                                                                                                                                                                                                          
+		//		var event = event|| window.event
 			   // event.stopPropagation();
 			    //event.preventDefault()
-				console.log(event.target)
-				localStorage.car = $(event.target).parents(".car-wrap").attr('id')
-			})
+		//	    event.dataTransfer.setData()    //.setData("Text",event.target.id)
+		//		console.log(event.target)
+		//		localStorage.car = $(event.target).parents(".car-wrap").attr('id')
+		//	})
 			
-			$('.car-wrap').children().attr("draggable", "true").bind("mousedown",function(event){
-			var event = event|| window.event
-            //event.preventDefault()
-           
-          // event.stopPropagation()
-           });
+			
+			
+	
           
 			
 		}
@@ -141,15 +145,22 @@ var cargo = function() {
 				for (var i = 0; i < collet["list"].length; i++) {
 					$('#sea-box').append('<tr FleetContainerID=' + collet["list"][i]["FleetContainerID"] + ' id="cargo-id' + (i + 1) + '"wt=' + collet["list"][i]["Weight"] + " size=" + collet["list"][i]["Size"] + '><td>' + collet["list"][i]["No"] + '</td><td>' + collet["list"][i]['Size'] + '</td><td>' + collet["list"][i]['ApproachLocation'] + '</td><td>' + collet["list"][i]['GoodsInspectionAddress'] + '</td> </tr>')
 				}
-				$('#sea-box tr').attr("draggable", "true").bind('dragstart', function(event) {
-				
-					var event =event||window.event
-						//event.stopPropagation()
-						//event.prevent
-					localStorage.cargo = event.target.id
-					console.log(localStorage.cargo)
-			
-				})
+				$('#sea-box tr').attr("draggable", "true")
+				$('#sea-box tr').each(
+					function(){
+						$(this)[0].ondragstart=function(event){
+							var event =event||window.event
+						  event.dataTransfer.setData("Text",event.target.id)
+							localStorage.cargo = event.target.id
+						}
+					}
+				)
+//				.bind('dragstart', function(event) {
+//				var event =event||window.event
+//						//event.stopPropagation()
+//						//event.prevent
+//			    localStorage.cargo = event.target.id
+//					console.log(localStorage.cargo)})
 				
 				
 				
@@ -166,30 +177,15 @@ var cargo = function() {
 			if (arguments[2]!=1) {
 				$(id + " tr:first").siblings().remove()
 			}
-			
-			
-			
-			
-			
 			var tr = ''
 			for (var i = 0; i < list["list"].length; i++) {
 				tr = '<tr><td><a href="javascript:void(0)" FleetID="' + list['list'][i]['FleetID'] + '">' + list['list'][i]['CustomerName'] + '</a></td><td>' + list['list'][i]['DeliverPartyName'] + '</td><td>' + list['list'][i]['GoodsName'] + '</td><td>' + list['list'][i]['Qty'] + '</td><td>' + list['list'][i]['PackageName'] + '</td><td>' + list['list'][i]['Weight'] + '</td><td>' + list['list'][i]['Volume'] + '</td></tr>'
 				$(id).append(tr)
 			}
 
-
-
-
-
-
-if ($('#jiazai').length<1) {
+            if ($('#jiazai').length<1) {
 				$(id).parent().append('<div id="jiazai" class="cursor-pointer" style="width: 92%;height: 30px;text-align: center; display: block;background: #DDDDDD;line-height: 30px;margin: 10px 4%">加载更多</div>')
 			}
-
-
-
-
-
 			$('#jiazai').unbind('click')
 			$('#jiazai').click(function(){
 								
