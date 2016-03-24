@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+				<script src="js/jQuery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://www.e56ol.com/Public/js/plugins/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://www.e56ol.com/Public/js/plugins/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="http://www.e56ol.com/Public/css/plugins/bootstrap.min.css"/>
+<script src="http://www.e56ol.com/Public/js/plugins/jquery.inputmask.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://www.e56ol.com/Public/js/plugins/jquery.inputmask.date.extensions.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://www.e56ol.com/Public/js/plugins/jquery.inputmask.extensions.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://www.e56ol.com/Public/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="http://www.e56ol.com/Public/css/common.css"/>
+		<script src="http://www.e56ol.com/Public/js/plugins/oaFieldVerify.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		
+		
+
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="http://www.e56ol.com/Public/js/dictionary.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+<div class="tab-chukou" >
+    <div class="tab-header">
+   <h1>中国人民共和国海关出口货物报关单</h1>
+
+		</div>
+<table border="" cellspacing="" cellpadding=""  style="margin-top: 20px;" id='Customs'>
+	<tr>  <!--class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  -->
+		<td class="td-one">出口口岸</td>
+		<td colspan="2"><input type="text" class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  value="{{EICustomCode | EICustomCode}}" /></td>
+		<td class="td-one ">备案号</td>
+		<td colspan="2"><input type="text"   value="{{ReferenceID}}" /></td>
+		<td class="td-one ">出口日期</td>
+		<td ><input type="text"   value="{{EIDate}}" /></td>
+		<td class="td-one ">申报日期</td>
+		<td ><input type="text"   value="{{DeclareDate}}" /></td>
+	</tr>
+	<tr>
+		<td  class="td-one">经营单位</td>
+		<td colspan="2">(1309962037)盐山友帮户外休闲用品公司</td>
+		<td class="td-one">运输方式</td>
+		<td>水路运输</td>
+		<td class="td-one">运输工具名称</td>
+		<td><input type="text"   value="{{TransportMachine}}" /></td>
+		<td class="td-one">提运单号</td>
+		<td colspan="2"><input type="text"   value="{{WayBillNo}}" /></td>
+	</tr>
+	<tr>
+		<td  class="td-one">发货单位</td>
+		<td colspan="2">(1309962037)盐山友帮户外休闲用品公司</td>
+		<td class="td-one">贸易方式</td>
+		<td >(0110)一般贸易</td>
+		<td class="td-one">征税性质</td>
+		<td>(101)一般征税</td>
+		<td class="td-one">结汇方式</td>
+		<td colspan="2">电汇</td>
+	</tr>
+	<tr>
+		<td class="td-one">许可证号</td>
+		<td ><input type="text"   value="{{LisenseKey}}" /></td>
+		<td class="td-one">运抵国(地区)</td>
+		<td>(304)德国</td>
+		<td class="td-one">指运港</td>
+		<td colspan="2">(2110)汉堡</td>
+		<td class="td-one">境内货源地</td>
+		<td colspan="2">(13099)沧州</td>
+	</tr>
+	<tr>
+		<td class="td-one">批准文号</td>
+		<td ><input type="text"   value="{{ApprovalNo}}" /></td>
+		<td class="td-one">成交方式</td>
+		<td>fob</td>
+		<td class="td-one">运费</td>
+		<td ><input type="text"   value="{{Freight}}" /></td>
+		<td class="td-one">保费</td>
+		<td ><input type="text"   value="{{Insurance}}" /></td>
+		<td class="td-one">杂费</td>
+		<td ><input type="text"   value="{{OtherCharge}}" /></td>
+	</tr>
+	<tr>
+		<td class="td-one">合同协议号</td>
+		<td ><input type="text"   value="{{ContractNo}}" /></td>
+		<td class="td-one">件数</td>
+		<td ><input type="text"   value="{{Packnumber}}" /></td>
+		<td class="td-one">包装种类</td>
+		<td>纸箱</td>
+		<td class="td-one">毛重(千克)</td>
+		<td ><input type="text"   value="{{GrossWeight}}" /></td>
+		<td class="td-one">净重(千克)</td>
+		<td ><input type="text"   value="{{NetWeight}}" /></td>
+	</tr>
+	<tr>
+		<td class="td-one">集装箱号</td>
+		<td colspan="2">tclu9830429*4(8)</td>
+		<td class="td-one">随附单证</td>
+		<td colspan="3">－－－－－－－－－－－－－－</td>
+		<td class="td-one">生产厂家</td>
+		<td colspan="2">xxxxxxxx厂</td>
+	</tr>
+	<tr>
+		<td class="td-one">备注</td>
+		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+  </tr>
+	<tr>
+		<td class="td-one">随附单证号</td>
+		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+	</tr>
+	<tr>
+		<td class="td-one">集装箱号</td>
+		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+	</tr>
+</table>
+<table id="translation-box" class="translation-box" border="" cellspacing="" cellpadding="" style="margin-top: 20px;">
+	<tr class="td-one">
+		<td>项号</td>
+		<td>商品编号</td>
+		<td>商品名称</td>
+		<td>规格型号</td>
+		<td>数量及单位</td>
+		<td>最终目的地(地区)</td>
+		<td>单价</td>
+		<td>总价</td>
+		<td>币制</td>
+		<td>征税</td>
+		<td ><a class="addcommodity" href="javascript:void(0)">添加商品</a></td>
+	</tr>
+	<tr v-for="Itemt in Itemt">
+		<td>{{Itemt.ID}}</td>
+		<td>{{Itemt.Code}}.{{Itemt.CodeExt}}</td>
+		<td>{{Itemt.Name}}</td>
+		<td>{{Itemt.Spec}}</td>
+		<td>3332件(个)-43982.40千克</td>
+		<td>{{Itemt.GoodsCountryCode|Currency}}</td>
+		<td>{{Itemt.DealUnitPrice}}</td>
+		<td>{{Itemt.DealTotalPrice}}</td>
+		<td>(502)美元</td>
+		<td>照章征税</td>
+		<td ><a class="removecommodity" v-on:click="removeItem($index)" href="javascript:void(0)">删除</a></td>
+	</tr>
+
+</table>
+<div class="">
+
+</div>
+
+
+<!--表单结束-->
+</div>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/chukou_main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
