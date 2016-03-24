@@ -16,8 +16,7 @@
 		
 		
 		
-		
-
+<script src="js/laydate.dev.js" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <script src="http://www.e56ol.com/Public/js/dictionary.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -30,19 +29,19 @@
 <table border="" cellspacing="" cellpadding=""  style="margin-top: 20px;" id='Customs'>
 	<tr>  <!--class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  -->
 		<td class="td-one">出口口岸</td>
-		<td colspan="2"><input type="text" class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  value="{{EICustomCode | EICustomCode}}" /></td>
+		<td colspan="2"><input type="text" class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  value="{{EICustomCode |EICustomCode}}" /></td>
 		<td class="td-one ">备案号</td>
 		<td colspan="2"><input type="text"   value="{{ReferenceID}}" /></td>
 		<td class="td-one ">出口日期</td>
-		<td ><input type="text"   value="{{EIDate}}" /></td>
+		<td ><input type="text" id='EIDate'  value="{{EIDate}}" /></td>
 		<td class="td-one ">申报日期</td>
-		<td ><input type="text"   value="{{DeclareDate}}" /></td>
+		<td ><input type="text" id='DeclareDate'  value="{{DeclareDate}}" /></td>
 	</tr>
 	<tr>
 		<td  class="td-one">经营单位</td>
-		<td colspan="2">(1309962037)盐山友帮户外休闲用品公司</td>
+		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
 		<td class="td-one">运输方式</td>
-		<td>水路运输</td>
+		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TransportMode" type="text"  value="{{TransportModeCode|TransportModeCode}}" /></td>
 		<td class="td-one">运输工具名称</td>
 		<td><input type="text"   value="{{TransportMachine}}" /></td>
 		<td class="td-one">提运单号</td>
@@ -50,19 +49,19 @@
 	</tr>
 	<tr>
 		<td  class="td-one">发货单位</td>
-		<td colspan="2">(1309962037)盐山友帮户外休闲用品公司</td>
+		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
 		<td class="td-one">贸易方式</td>
-		<td >(0110)一般贸易</td>
+		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TradeMode" type="text"  value="{{TradeModeCode|TradeModeCode}}" /></td>
 		<td class="td-one">征税性质</td>
-		<td>(101)一般征税</td>
+		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TaxNature " type="text"  value="{{TaxNatureCode|TaxNatureCode}}" /></td>
 		<td class="td-one">结汇方式</td>
-		<td colspan="2">电汇</td>
+		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_SettlementMode" type="text"  value="{{SettlementModeCode|SettlementModeCode}}" /></td>
 	</tr>
 	<tr>
 		<td class="td-one">许可证号</td>
 		<td ><input type="text"   value="{{LisenseKey}}" /></td>
 		<td class="td-one">运抵国(地区)</td>
-		<td>(304)德国</td>
+		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_Currency" type="text"  value="{{CountryCode|Country}}" /></td>
 		<td class="td-one">指运港</td>
 		<td colspan="2">(2110)汉堡</td>
 		<td class="td-one">境内货源地</td>
@@ -102,15 +101,15 @@
 	</tr>
 	<tr>
 		<td class="td-one">备注</td>
-		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－ </td>
   </tr>
 	<tr>
 		<td class="td-one">随附单证号</td>
-		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+		<td colspan="9"><span class="span1" v-for="Doc in Doc">{{Doc.No}}</span><a class="bianji" id='Doc' href="javascript:void(0)">编辑</a></td>
 	</tr>
 	<tr>
 		<td class="td-one">集装箱号</td>
-		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－</td>
+		<td colspan="9"><span class="span1" v-for="Container in Container">{{Container.No}}</span><a class="bianji" id='Container' href="javascript:void(0)">编辑</a></td>
 	</tr>
 </table>
 <table id="translation-box" class="translation-box" border="" cellspacing="" cellpadding="" style="margin-top: 20px;">
@@ -133,7 +132,7 @@
 		<td>{{Itemt.Name}}</td>
 		<td>{{Itemt.Spec}}</td>
 		<td>3332件(个)-43982.40千克</td>
-		<td>{{Itemt.GoodsCountryCode|Currency}}</td>
+		<td>{{Itemt.GoodsCountryCode|Country}}</td>
 		<td>{{Itemt.DealUnitPrice}}</td>
 		<td>{{Itemt.DealTotalPrice}}</td>
 		<td>(502)美元</td>

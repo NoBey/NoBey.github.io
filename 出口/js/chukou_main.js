@@ -36,7 +36,36 @@ var datetest= { //属性名基本与数据库中字段名一致
         "Packnumber": "3332", //件数
         "PackageTypeCode": "2", //包装种类
         "GrossWeight": "49813.40", //毛重
-        "NetWeight": "43982.40", //净重       
+        "NetWeight": "43982.40", //净重 
+        "Doc":[{
+		"ID": 1,
+		"Code": "B",
+		 "No": "120000213222047000"
+		
+	}, {
+		"ID": 2,
+		"Code": "B",
+		"No": "120000213221931000"
+	}],
+	"Container":[{
+	"ID": 1,
+	"No": "A0000001",
+	 "Size": "S",
+	"Weight": "8.2"
+	
+}, {
+	"ID": 2,
+	"No": "A0000002",
+	"Size": "L",
+	"Weight": "25.6"
+}, {
+	"ID": 3,
+	"No": "A0000003",
+	"Size": "S",
+	"Weight": "5.3"
+}]
+
+	
     }
 
 
@@ -57,16 +86,7 @@ var Containertest = [{
 	"Size": "S",
 	"Weight": "5.3"
 }]
-var Doctest = [{
-		"ID": 1,
-		"Code": "B",
-		 "No": "120000213222047000"
-		
-	}, {
-		"ID": 2,
-		"Code": "B",
-		"No": "120000213221931000"
-	}]
+//var Doctest = 
 
 var Itemtest ={Itemt:[{
 	"ID": 1,
@@ -118,10 +138,31 @@ function IsNum(s)
     }
     return false;
 }
-//过滤器开始
+//过滤器开始 SettlementModeCode
+
+Vue.filter('SettlementModeCode', function (value) {
+	if(IsNum(value)){
+		return g_SettlementMode[value]
+	}	
+  return ''
+})
+Vue.filter('TaxNatureCode', function (value) {
+	if(IsNum(value)){
+		return g_TaxNature[value]
+	}	
+  return ''
+})
+Vue.filter('TradeModeCode', function (value) {
+	if(IsNum(value)){
+		return g_TradeMode[value]
+	}	
+  return ''
+})
+
+
 Vue.filter('ManagePartyCode', function (value) {
 	if(IsNum(value)){
-		value='('+value+")"+g_Party[vueDate['ManagePartyCode']]
+		value='('+value+")"+g_Party[value]
 		return value
 	}	
   return 
@@ -133,9 +174,15 @@ Vue.filter('EICustomCode', function (value) {
 	}	
   return ''
 })
-Vue.filter('Currency', function (value) {
+Vue.filter('TransportModeCode', function (value) {
 	if(IsNum(value)){
-		value='('+value+")"+g_Currency[value]
+		return g_TransportMode[value]
+	}	
+  return ''
+})
+Vue.filter('Country', function (value) {
+	if(IsNum(value)){
+		value='('+value+")"+g_Country[value]
 		return value
 	}	
   return ''
@@ -157,6 +204,13 @@ el: '#translation-box',
     }
   }
 })
+
+laydate({
+	elem: '#EIDate'
+});
+laydate({
+	elem: '#DeclareDate'
+});
 
 console.log(vueItem)
 
@@ -189,6 +243,38 @@ $('.addcommodity').on('click', function(){
 }
         	vueItem.Itemt.push(item)
         layer.msg('添加成功')
+       	layer.close(index)
+    }
+    });
+});
+
+$('#Doc').on('click', function(){
+    layer.open({
+        type: 1,
+         btn: ['完成'],
+        title: '编辑随附单证号',
+        area: ['800px', '160px'],
+        shadeClose: true, //点击遮罩关闭
+        content: '\<\div style="padding:20px;"><\/div>',
+        yes: function(index){
+       
+        layer.msg('编辑成功')
+       	layer.close(index)
+    }
+    });
+});
+
+$('#Container').on('click', function(){
+    layer.open({
+        type: 1,
+         btn: ['完成'],
+        title: '集装箱号',
+        area: ['800px', '160px'],
+        shadeClose: true, //点击遮罩关闭
+        content: '\<\div style="padding:20px;"><\/div>',
+        yes: function(index){
+       
+        layer.msg('编辑成功')
        	layer.close(index)
     }
     });
@@ -256,6 +342,8 @@ $.oaFieldVerify('.form-control', {
 					}
 				}
 			});
+
+
 
 
 
