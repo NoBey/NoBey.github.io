@@ -69,23 +69,7 @@ var datetest= { //属性名基本与数据库中字段名一致
     }
 
 
-var Containertest = [{
-	"ID": 1,
-	"No": "A0000001",
-	 "Size": "S",
-	"Weight": "8.2"
-	
-}, {
-	"ID": 2,
-	"No": "A0000002",
-	"Size": "L",
-	"Weight": "25.6"
-}, {
-	"ID": 3,
-	"No": "A0000003",
-	"Size": "S",
-	"Weight": "5.3"
-}]
+
 //var Doctest = 
 
 var Itemtest ={Itemt:[{
@@ -139,7 +123,30 @@ function IsNum(s)
     return false;
 }
 //过滤器开始 SettlementModeCode
-
+Vue.filter('PackageTypeCode', function (value) {
+	if(IsNum(value)){
+		return g_PackageType[value]
+	}	
+  return ''
+})
+Vue.filter('TradeTermCode', function (value) {
+	if(IsNum(value)){
+		return g_TradeTerm[value]
+	}	
+  return ''
+})
+Vue.filter('SubEntityCode', function (value) {
+	if(IsNum(value)){
+		return g_SubEntity[value]
+	}	
+  return ''
+})
+Vue.filter('PortCode', function (value) {
+	if(IsNum(value)){
+		return g_Port[value]
+	}	
+  return ''
+})
 Vue.filter('SettlementModeCode', function (value) {
 	if(IsNum(value)){
 		return g_SettlementMode[value]
@@ -204,6 +211,9 @@ el: '#translation-box',
     }
   }
 })
+    
+
+
 
 laydate({
 	elem: '#EIDate'
@@ -221,25 +231,40 @@ $('.addcommodity').on('click', function(){
         title: '添加商品',
         area: ['800px', '160px'],
         shadeClose: true, //点击遮罩关闭
-        content: '\<\div style="padding:20px;"> <input type="text" placeholder="商品编号" value="" /><input type="text" placeholder="商品附加编号" value="" /><input type="text" placeholder="商品名称" value="" /><input type="text" placeholder="规格型号" value="" /><input type="text" placeholder="成交数量" value="" /><input type="text" placeholder="成交数量" value="" /><input type="text" placeholder="单价" value="" /><input type="text" placeholder="总价" value="" /><input type="text" placeholder="币制" value="" /><input type="text" placeholder="征免" value="" />\<\/div>',
+        content: '\<\div id="layeritem" style="padding:20px;"> <input type="text" placeholder="商品编号" value="" /><input type="text" placeholder="商品附加编号" value="" /><input type="text" placeholder="商品名称" value="" /><input type="text" placeholder="规格型号" value="" /><input type="text" placeholder="成交数量" value="" /><input type="text" placeholder="成交数量" value="" /><input type="text" placeholder="单价" value="" /><input type="text" placeholder="总价" value="" /><input type="text" placeholder="币制" value="" /><input type="text" placeholder="征免" value="" />\<\/div>',
         yes: function(index){
+        	var go=0
+        $('#layeritem').children('input').each(
+        	function(){
+        		//console.log($(this).val())
+        		if($(this).val()==''||$(this).val()==" "){
+        			go=1
+        			
+        		}
+        	}
+        )
+        	if(go===1){
+        		layer.msg('请填写完成信息')
+        		return
+        	}
+        	
         	var item={
-	"ID": 2,
-	"Code": "94032000",
-	"CodeExt": "01",
-	"Name": "储物柜",
-	"Spec": "户外家具,休闲用|铁制|无品牌|无规格",
-	"DealQuantity": "3332",
-	"DealUnitCode": "011",
-	"LegalQuantity": "43982.40",
-	"LegalUnitCode": "035",
-	"SecondQuantity": "3332",
-	"SecondUnitCode": "007",
-	"GoodsCountryCode": "304",
-	"DealUnitPrice": "32.15",
-	"DealTotalPrice": "107123.80",
-	"CurrencyCode": "502",
-	"TaxTypeCode": "1"
+	"ID": vueItem.Itemt.length+1,
+	"Code": $('#layeritem').children('input').eq(0).val(),
+	"CodeExt": $('#layeritem').children('input').eq(1).val(),
+	"Name": $('#layeritem').children('input').eq(2).val(),
+	"Spec": $('#layeritem').children('input').eq(3).val(),
+	"DealQuantity": $('#layeritem').children('input').eq(4).val(),
+	"DealUnitCode": $('#layeritem').children('input').eq(5).val(),
+	"LegalQuantity": $('#layeritem').children('input').eq(6).val(),
+	"LegalUnitCode": $('#layeritem').children('input').eq(7).val(),
+	"SecondQuantity": $('#layeritem').children('input').eq(8).val(),
+	"SecondUnitCode": $('#layeritem').children('input').eq(9).val(),
+	"GoodsCountryCode":$('#layeritem').children('input').eq(10).val(),
+	"DealUnitPrice": $('#layeritem').children('input').eq(6).val(),
+	"DealTotalPrice":$('#layeritem').children('input').eq(7).val(),
+	"CurrencyCode": $('#layeritem').children('input').eq(0).val(),
+	"TaxTypeCode": $('#layeritem').children('input').eq(0).val()
 }
         	vueItem.Itemt.push(item)
         layer.msg('添加成功')
@@ -253,31 +278,70 @@ $('#Doc').on('click', function(){
         type: 1,
          btn: ['完成'],
         title: '编辑随附单证号',
-        area: ['800px', '160px'],
+        area: ['800px', '260px'],
         shadeClose: true, //点击遮罩关闭
-        content: '\<\div style="padding:20px;"><\/div>',
+        content: '\<\div id="layerdoc" style="padding:20px;"><div v-for="Doc in Doc"><input type="text" v-model="Doc.ID" value="{{Doc.ID}}" /><input type="text" v-model="Doc.Code" value="{{Doc.Code}}" /><input type="text" v-model="Doc.No" value="{{Doc.No}}" /><a v-on:click="removelayerdoc($index)" href="javascript:void(0)">删除</a></div><a v-on:click="addlayerdoc($index)" href="javascript:void(0)">添加</a><\/div>',
         yes: function(index){
-       
         layer.msg('编辑成功')
-       	layer.close(index)
-    }
+       	//layer.close(index)
+        }
     });
+
+    var layerdoc=new Vue({
+el: '#layerdoc',
+  data: datetest,
+  methods: {
+    addlayerdoc: function () {
+        this.Doc.push({
+		"ID": '',
+		"Code": "",
+		"No": ""
+	})
+    },
+    removelayerdoc: function (index) {
+      this.Doc.splice(index, 1)
+    }
+  }
+}
+)
+
+    
 });
 
 $('#Container').on('click', function(){
-    layer.open({
+   layer.open({
         type: 1,
          btn: ['完成'],
-        title: '集装箱号',
-        area: ['800px', '160px'],
-        shadeClose: true, //点击遮罩关闭
-        content: '\<\div style="padding:20px;"><\/div>',
+        title: '编辑集装箱',
+        area: ['800px', '260px'],
+        shadeClose: false, //点击遮罩关闭
+        content: '\<\div id="layerContainer" style="padding:20px;"><div v-for="Container in Container"><input type="text" v-model="Container.ID" value="{{Container.ID}}" /><input type="text" v-model="Container.No" value="{{Container.No}}" /><input type="text" v-model="Container.Size" value="{{Container.Size}}" /><input type="text" v-model="Container.Weight" value="{{Container.Weight}}" /><a v-on:click="removeContainer($index)" href="javascript:void(0)">删除</a></div><a v-on:click="addContainer($index)" href="javascript:void(0)">添加</a><\/div>',
         yes: function(index){
-       
         layer.msg('编辑成功')
-       	layer.close(index)
-    }
+       	//layer.close(index)
+        }
     });
+
+    var layerContainer=new Vue({
+el: '#layerContainer',
+  data: datetest,
+  methods: {
+    addContainer: function () {
+        this.Container.push({
+                "ID": '',
+                "No": "",
+                "Size": "",
+                "Weight": ""
+            })
+    },
+    removeContainer: function (index) {
+      this.Container.splice(index, 1)
+    }
+  }
+}
+)
+
+    
 });
 
 
@@ -288,9 +352,23 @@ $('#Container').on('click', function(){
 // console.log()
 
 
+// 提交
 
+function tijiao(){
+	
+	$('.form-control').each(
+		function(){
+			if($(this).attr('oa-value')!==undefined){
+				vueDate[$(this).attr('name')]=$(this).attr('oa-value')
+			}
+		}
+	)
+}
 
-
+function queren(){
+	$('input').css('background','#00E8D7')
+	
+}
 
 
 

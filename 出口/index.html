@@ -29,76 +29,69 @@
 <table border="" cellspacing="" cellpadding=""  style="margin-top: 20px;" id='Customs'>
 	<tr>  <!--class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  -->
 		<td class="td-one">出口口岸</td>
-		<td colspan="2"><input type="text" class="form-control" oa-type="dictionary" oa-dictionary="g_Custom"  value="{{EICustomCode |EICustomCode}}" /></td>
+		<td colspan="2"><input type="text" class="form-control" name="EICustomCode" oa-type="dictionary" oa-dictionary="g_Custom"  value="{{EICustomCode |EICustomCode}}" /></td>
 		<td class="td-one ">备案号</td>
-		<td colspan="2"><input type="text"   value="{{ReferenceID}}" /></td>
+		<td colspan="2"><input type="text" v-model="ReferenceID" value="{{ReferenceID}}" /></td>
 		<td class="td-one ">出口日期</td>
-		<td ><input type="text" id='EIDate'  value="{{EIDate}}" /></td>
+		<td ><input type="text" id='EIDate' v-model="EIDate"  value="{{EIDate}}" /></td>
 		<td class="td-one ">申报日期</td>
-		<td ><input type="text" id='DeclareDate'  value="{{DeclareDate}}" /></td>
+		<td ><input type="text" id='DeclareDate' v-model="DeclareDate"  value="{{DeclareDate}}" /></td>
 	</tr>
 	<tr>
 		<td  class="td-one">经营单位</td>
-		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
+		<td  colspan="2"><input name="ManagePartyCode" class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
 		<td class="td-one">运输方式</td>
-		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TransportMode" type="text"  value="{{TransportModeCode|TransportModeCode}}" /></td>
+		<td ><input name="TransportModeCode"  class="form-control" oa-type="dictionary" oa-dictionary="g_TransportMode" type="text"  value="{{TransportModeCode|TransportModeCode}}" /></td>
 		<td class="td-one">运输工具名称</td>
-		<td><input type="text"   value="{{TransportMachine}}" /></td>
+		<td><input type="text" v-model="TransportMachine" value="{{TransportMachine}}" /></td>
 		<td class="td-one">提运单号</td>
-		<td colspan="2"><input type="text"   value="{{WayBillNo}}" /></td>
+		<td colspan="2"><input type="text" v-model="WayBillNo" value="{{WayBillNo}}" /></td>
 	</tr>
 	<tr>
 		<td  class="td-one">发货单位</td>
-		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
+		<td  colspan="2"><input name="ManagePartyCode" class="form-control" oa-type="dictionary" oa-dictionary="g_Party" type="text"  value="{{ManagePartyCode|ManagePartyCode}}" /></td>
 		<td class="td-one">贸易方式</td>
-		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TradeMode" type="text"  value="{{TradeModeCode|TradeModeCode}}" /></td>
+		<td ><input name="TradeModeCode" class="form-control" oa-type="dictionary" oa-dictionary="g_TradeMode" type="text"  value="{{TradeModeCode|TradeModeCode}}" /></td>
 		<td class="td-one">征税性质</td>
-		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_TaxNature " type="text"  value="{{TaxNatureCode|TaxNatureCode}}" /></td>
+		<td ><input name="TaxNatureCode" class="form-control" oa-type="dictionary" oa-dictionary="g_TaxNature " type="text"  value="{{TaxNatureCode|TaxNatureCode}}" /></td>
 		<td class="td-one">结汇方式</td>
-		<td  colspan="2"><input class="form-control" oa-type="dictionary" oa-dictionary="g_SettlementMode" type="text"  value="{{SettlementModeCode|SettlementModeCode}}" /></td>
+		<td  colspan="2"><input name="SettlementModeCode" class="form-control" oa-type="dictionary" oa-dictionary="g_SettlementMode" type="text"  value="{{SettlementModeCode|SettlementModeCode}}" /></td>
 	</tr>
 	<tr>
 		<td class="td-one">许可证号</td>
-		<td ><input type="text"   value="{{LisenseKey}}" /></td>
+		<td ><input type="text" v-model="LisenseKey" value="{{LisenseKey}}" /></td>
 		<td class="td-one">运抵国(地区)</td>
-		<td ><input class="form-control" oa-type="dictionary" oa-dictionary="g_Currency" type="text"  value="{{CountryCode|Country}}" /></td>
+		<td ><input name="CountryCode" class="form-control" oa-type="dictionary" oa-dictionary="g_Currency" type="text"  value="{{CountryCode|Country}}" /></td>
 		<td class="td-one">指运港</td>
-		<td colspan="2">(2110)汉堡</td>
+		<td colspan="2"><input name="PortCode" class="form-control" oa-type="dictionary" oa-dictionary="g_Port" type="text"  value="{{PortCode|PortCode}}" /></td>
 		<td class="td-one">境内货源地</td>
-		<td colspan="2">(13099)沧州</td>
+		<td colspan="2"><input name="SubEntityCode" class="form-control" oa-type="dictionary" oa-dictionary="g_SubEntity" type="text"  value="{{SubEntityCode|SubEntityCode}}" /></td>
 	</tr>
 	<tr>
 		<td class="td-one">批准文号</td>
-		<td ><input type="text"   value="{{ApprovalNo}}" /></td>
+		<td ><input type="text" v-model="ApprovalNo" value="{{ApprovalNo}}" /></td>
 		<td class="td-one">成交方式</td>
-		<td>fob</td>
+		<td ><input name="TradeTermCode" class="form-control" oa-type="dictionary" oa-dictionary="g_TradeTerm" type="text"  value="{{TradeTermCode|TradeTermCode}}" /></td>
 		<td class="td-one">运费</td>
-		<td ><input type="text"   value="{{Freight}}" /></td>
+		<td ><input type="text" v-model="Freight"  value="{{Freight}}" /></td>
 		<td class="td-one">保费</td>
-		<td ><input type="text"   value="{{Insurance}}" /></td>
+		<td ><input type="text" v-model="Insurance"  value="{{Insurance}}" /></td>
 		<td class="td-one">杂费</td>
-		<td ><input type="text"   value="{{OtherCharge}}" /></td>
+		<td ><input type="text" v-model="OtherCharge"  value="{{OtherCharge}}" /></td>
 	</tr>
 	<tr>
 		<td class="td-one">合同协议号</td>
-		<td ><input type="text"   value="{{ContractNo}}" /></td>
+		<td ><input type="text" v-model="ContractNo"  value="{{ContractNo}}" /></td>
 		<td class="td-one">件数</td>
-		<td ><input type="text"   value="{{Packnumber}}" /></td>
+		<td ><input type="text" v-model="Packnumber"  value="{{Packnumber}}" /></td>
 		<td class="td-one">包装种类</td>
-		<td>纸箱</td>
+		<td ><input name="PackageTypeCode" class="form-control" oa-type="dictionary" oa-dictionary="g_PackageType" type="text"  value="{{PackageTypeCode|PackageTypeCode}}" /></td>
 		<td class="td-one">毛重(千克)</td>
-		<td ><input type="text"   value="{{GrossWeight}}" /></td>
+		<td ><input type="text" v-model="GrossWeight"  value="{{GrossWeight}}" /></td>
 		<td class="td-one">净重(千克)</td>
-		<td ><input type="text"   value="{{NetWeight}}" /></td>
+		<td ><input type="text" v-model="NetWeight"  value="{{NetWeight}}" /></td>
 	</tr>
-	<tr>
-		<td class="td-one">集装箱号</td>
-		<td colspan="2">tclu9830429*4(8)</td>
-		<td class="td-one">随附单证</td>
-		<td colspan="3">－－－－－－－－－－－－－－</td>
-		<td class="td-one">生产厂家</td>
-		<td colspan="2">xxxxxxxx厂</td>
-	</tr>
+	
 	<tr>
 		<td class="td-one">备注</td>
 		<td colspan="9">－－－－－－－－－－－－－－－－－－－－－－ </td>
