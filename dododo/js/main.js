@@ -11,12 +11,14 @@
   });
   });
  //*****************
-if(!localStorage.num1){
+     	if(!localStorage.num1){
 	localStorage.num1=JSON.stringify([1,2,3])
 }
+
 if(!localStorage.num2){
-	localStorage.num1=JSON.stringify([4,5,6,7,8,9,10,11,12,13])
+	localStorage.num2=JSON.stringify([4,5,6,7,8,9,10,11,12,13])
 }
+      
 var conditionslist =["客户","海关编号","品名","经营单位","统一编号","申报单位","提运单号","监管方式","航次","商品编号","运输工具","征免性质","申报地海关","合同协议号","集装箱号","客户业务号","通关单号","接单日期","申报日期"]
 var conditionsnum=JSON.parse(localStorage.num1) 
 var conditionsnum2=JSON.parse(localStorage.num2) 
