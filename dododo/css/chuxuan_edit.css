@@ -1,0 +1,28 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.cx_content {
+  width: 100%;
+  background: #CCCCCC;
+}
+.cx_content .cx_content_top {
+  width: 100%;
+  background: red;
+  height: 40px;
+  overflow: hidden;
+}
+.cx_content .cx_content_body {
+  width: 100%;
+  background: gold;
+  height: 160px;
+  overflow: hidden;
+}
+.cx_content .cx_content_wrap {
+  float: left;
+  display: block;
+  background: #009F95;
+  padding: 10px;
+  margin: 3px;
+}
+/*# sourceMappingURL=chuxuan_edit.css.map */
