@@ -688,7 +688,8 @@ iframe {
 }
 
 body {
-    background-color: #f7f7f7;
+    background-color: #f0f6f5;
+    
 }
 
 body #page {
@@ -696,6 +697,7 @@ body #page {
     background-color: #fff;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 
@@ -704,10 +706,10 @@ body {
     font-size: 1.6rem;
     color: #424242;
     line-height: 1.8;
-    background-color: #fff;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+        background-color: #f0f6f5;
 }
 
 @media (min-width: 768px) {
