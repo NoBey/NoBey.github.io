@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Web 前端性能 | NoBey</title>
+  <meta name="author" content="NoBey">
+  
+  <meta name="description" content="Web 前端性能的两个重要指标 度量页面性能存在着许多指标参数 ，本文涉及 到其中的两个技术指标［２ ］ ：TDD 和 TSR ． （１）TDD（Time to Document Downloaded）文 档下载完成时间 ：即整个页面中所包含的所有数据 对象如 JS 脚本 、视频图片以及文字等下载完成所 用时间 ． （２ ） TSR （TimetoStart Render ）开始渲染时 间 ：用户从浏览器发送请求直到页面产生响应并显 示内容的阶段所用时常 ．１ ．１ 版本协议的 HT TP 规定［３］ ：在同一时 间 ，客户端最多只能向服务器端发出两个连接请 求 ，并且默认所有的连接均为持久连接 ．这一规定 将浏览器的并发连接数限定为二 ．">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Web 前端性能"/>
+  <meta property="og:site_name" content="NoBey"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="NoBey" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">NoBey</a>
+  </h1>
+  <p class="site-description"></p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/">关于</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Web 前端性能</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/01/Web 前端性能/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-01T15:25:44.000Z">
+          2016-05-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Web 前端性能的两个重要指标 度量页面性能存在着许多指标参数 ，本文涉及 到其中的两个技术指标［２ ］ ：TDD 和 TSR ．<br> （１）TDD（Time to Document Downloaded）文 档下载完成时间 ：即整个页面中所包含的所有数据 对象如 JS 脚本 、视频图片以及文字等下载完成所 用时间 ．<br> （２ ） TSR （TimetoStart Render ）开始渲染时 间 ：用户从浏览器发送请求直到页面产生响应并显 示内容的阶段所用时常 ．<br>１ ．１ 版本协议的 HT TP 规定［３］ ：在同一时 间 ，客户端最多只能向服务器端发出两个连接请 求 ，并且默认所有的连接均为持久连接 ．这一规定 将浏览器的并发连接数限定为二 ．</p>
+<a id="more"></a>
+<p>JavaScript 加载优化<br>首先分析已经完成的网页，对页面中可以延迟加载的部分进行识别。筛选代 码时需要制定规则进行筛选。在筛选彩购网的代码时，规则为选择页面加载完毕 时，还没有运行的 JavaScript 代码。具体的筛选步骤为， a.记录所有代码中的函数，包括作用域和函数名； b.加载网页，同时记录对可视区域内的元素进行了操作的代码； c.如果被记录的函数在网页加载完毕运行过，则从记录中将其删除</p>
+<p>从用户体验出发的几个核心时间指标包括：Start Render、DOM Ready、Page Load、TTI。不同的性能指标对用户体验的影响是不同的，而指标本身受哪些因素的影响也是不同的。一般的前端优化都会考虑前面三个的优化点，而最后的TTI优化往往被忽略。我们却碰到了必须解决这个问题的点，业务场景发生在需要加入购物的按钮上。比如详情页的下单按钮。</p>
+<p>ttl    Time To Interact</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/前端优化/">前端优化</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+<div id="comment">
+
+
+<!-- 多说评论框 start -->
+ <div class="ds-thread" data-thread-key="/2016/05/01/Web 前端性能/" data-title="Web 前端性能" data-url="http://NoBey.Top/2016/05/01/Web 前端性能/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nobey"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+</div>
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+
+  
+  &copy; 2016 NoBey
+  
+</p>
+
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

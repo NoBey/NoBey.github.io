@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>元素的居中 | NoBey</title>
+  <meta name="author" content="NoBey">
+  
+  <meta name="description" content="margin:auto实现绝对定位元素的居中">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="元素的居中"/>
+  <meta property="og:site_name" content="NoBey"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="NoBey" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">NoBey</a>
+  </h1>
+  <p class="site-description"></p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/">关于</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>元素的居中</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/01/元素的居中/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-01T15:25:44.000Z">
+          2016-05-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>margin:auto实现绝对定位元素的居中</p>
+<a id="more"></a>
+<p>margin:auto实现绝对定位元素的居中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.element &#123;</span><br><span class="line">    width: <span class="number">600</span>px; height: <span class="number">400</span>px;</span><br><span class="line">    position: absolute; left: <span class="number">0</span>; top: <span class="number">0</span>; right: <span class="number">0</span>; bottom: <span class="number">0</span>;</span><br><span class="line">    margin: auto;    <span class="comment">/* 有了这个就自动居中了 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绝对定位元素的居中实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.element &#123;</span><br><span class="line">    width: <span class="number">600</span>px; height: <span class="number">400</span>px;</span><br><span class="line">    position: absolute; left: <span class="number">50</span>%; top: <span class="number">50</span>%;</span><br><span class="line">    margin-top: <span class="number">-200</span>px;    <span class="comment">/* 高度的一半 */</span></span><br><span class="line">    margin-left: <span class="number">-300</span>px;    <span class="comment">/* 宽度的一半 */</span></span><br><span class="line">&#125;</span><br><span class="line">.element &#123;</span><br><span class="line">    width: <span class="number">600</span>px; height: <span class="number">400</span>px;</span><br><span class="line">    position: absolute; left: <span class="number">50</span>%; top: <span class="number">50</span>%;</span><br><span class="line">    transform: translate(<span class="number">-50</span>%, <span class="number">-50</span>%);    <span class="comment">/* 50%为自身尺寸的一半 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/css/">css</a>, <a href="/tags/浏览器/">浏览器</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+<div id="comment">
+
+
+<!-- 多说评论框 start -->
+ <div class="ds-thread" data-thread-key="/2016/05/01/元素的居中/" data-title="元素的居中" data-url="http://NoBey.Top/2016/05/01/元素的居中/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nobey"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+</div>
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+
+  
+  &copy; 2016 NoBey
+  
+</p>
+
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

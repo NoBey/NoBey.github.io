@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP页面间参数传递的四种方式 | NoBey</title>
+  <meta name="author" content="NoBey">
+  
+  <meta name="description" content="我们定义page01.php和page02.php两个php文件，将page01中的内容想办法传递到page02，然后供我们继续使用。
+第一种：使用客户端浏览器的cookie。cookie很容易理解，就是一个临时文件，可以把它看成一个储藏室，浏览器在浏览的过程中记录一些信息，就暂时存放在这里。在page01中设置一个cookie。">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="PHP页面间参数传递的四种方式"/>
+  <meta property="og:site_name" content="NoBey"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="NoBey" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">NoBey</a>
+  </h1>
+  <p class="site-description"></p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/">关于</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>PHP页面间参数传递的四种方式</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/01/PHP页面间参数传递的四种方式/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-01T15:25:44.000Z">
+          2016-05-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>我们定义page01.php和page02.php两个php文件，将page01中的内容想办法传递到page02，然后供我们继续使用。</p>
+<p>第一种：<br>使用客户端浏览器的cookie。cookie很容易理解，就是一个临时文件，可以把它看成一个储藏室，浏览器在浏览的过程中记录一些信息，就暂时存放在这里。<br>在page01中设置一个cookie。<br><a id="more"></a></p>
+<pre><code class="php">
+<span class="meta">&lt;?php</span> 
+       setcookie(<span class="string">'mycookie'</span>,<span class="string">'自灵'</span>);
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>就是这么简单，我们已经创建cookie完毕。<br>我们定义了一个变量mycookie，它的值是字符串’自灵’。<br>我们可以随便给cookie变量起名字，可以定义多个cookie变量。</p>
+<p>在page02页面接受cookie。</p>
+<pre><code class="php"><span class="meta">&lt;?php</span>
+     $wuziling = $_COOKIE[<span class="string">'mycookie'</span>];
+     <span class="keyword">echo</span> $wuziling;
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>我们使用$_COOKIE[]提取cookie中的变量mycookie，将它的值付给$wuziling。然后简单的输出。<br>好了，到这里使用cookie从页面之间传递参数完毕。</p>
+<p>第二种：<br>使用服务器端的session。理解session是一件很容易的事情。与cookie的不同在于它是服务器端的临时储藏室。session常被称作会话。<br>在page01中设置一个session。</p>
+<pre><code class="php"><span class="meta">&lt;?php</span> 
+session_start();
+$_SESSION[<span class="string">"temp"</span>]=<span class="keyword">array</span>(<span class="string">'123'</span>,<span class="string">'456'</span>,<span class="string">'789'</span>);
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>要想使用session，必须启动session。session_start();就是启动session的方法。一般要写在最前面。<br>第二个语句我定义了一个$_SESSION[“temp”]数组，数组的名称是$_SESSION[“temp”]，里面存储了3个字符串。<br>在page02页面接受session。</p>
+<pre><code class="php"><span class="meta">&lt;?php</span> 
+     session_start();
+     <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;<span class="number">3</span>;$i++)
+     {
+             <span class="keyword">echo</span> $_SESSION[<span class="string">'temp'</span>][$i].<span class="string">'&lt;br /&gt;'</span>;
+     }
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>首先启动会话。启动后我们在page01定义的变量已经可以使用了，不需要其他任何获取的操作，这里不同于cookie。<br>下面我们使用for循环将其内容输出。<br>【不要以为$_SESSION[‘temp’][$i]是一个二维数组，它是个一维数组，数组的名称是$_SESSION[“temp”]，虽然这个名称比较繁琐，数组的下标是’temp’】<br>【我们在写$_SESSION[“temp”]时，temp加双引号或者单引号都是等价的。】<br>【这里我们定义会话变量时定义的是数组，也可以定义普通变量，就像cookie里面讲到的】</p>
+<p>第三种：<br>使用表单来传递。<br>page01.php这样写：</p>
+<pre><code class="html"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"page02.php"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span>
+     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"wuziling"</span> /&gt;</span>
+     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span> /&gt;</span>
+<span class="tag">&lt;/<span class="name">form</span>&gt;</span>
+</code></pre>
+<p>表单内的属性action直接指定此表单内容传递到哪个页面。method指明了传递的方式。post代表使用消息传递，就像我们发短信一样。<br>page02.php这样写：</p>
+<pre><code class="php"><span class="meta">&lt;?php</span> 
+     $wu = $_POST[<span class="string">'wuziling'</span>];
+     <span class="keyword">echo</span> $wu;
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>使用$_POST[ ]获取传递过来的变量值。这个变量名wuziling在表单的input标签的name属性里定义。<br>然后将其传递给另外一个变量$wu。这样我们就可以输出了。直接输出也是可以的，echo   $_POST[‘wuziling’];<br>【如果哪里不明白，请参考本版块的另外一个详细介绍表单提交的帖子】<br>【method的值也可以是get】</p>
+<p>第四种：<br>使用超链接传递参数。我们上网的很多操作都是点击超链接在网页之间跳来跳去。点的同时同样可以传递参数。<br>page01.php这样写：</p>
+<pre><code class="php"><span class="meta">&lt;?php</span> 
+$var = <span class="string">'I love you !'</span>;
+<span class="meta">?&gt;</span>
+&lt;a href=<span class="string">"&lt;?php echo "</span>page02.php?<span class="keyword">new</span>=<span class="string">".$var ?&gt;"</span>&gt;get&lt;/a&gt;
+</code></pre>
+<p>定义一个变量$var。<br>超链接a的href属性里写明要跳转到page02页面。后面加一个问号，一个自己定义的变量new【此名称在page02页面要使用】，new的值就是我们想传递的$var。<br>page02.php这样写：</p>
+<pre><code class="php"><span class="meta">&lt;?php</span>
+     <span class="keyword">echo</span>   $_GET[<span class="string">'new'</span>];
+<span class="meta">?&gt;</span>
+</code></pre>
+<p>使用$_GET[ ]获取new的值，然后就可以输出或做其他用途。<br>这时的浏览器地址栏可以直接看到new变量和它的值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/php/">php</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+<div id="comment">
+
+
+<!-- 多说评论框 start -->
+ <div class="ds-thread" data-thread-key="/2016/05/01/PHP页面间参数传递的四种方式/" data-title="PHP页面间参数传递的四种方式" data-url="http://NoBey.Top/2016/05/01/PHP页面间参数传递的四种方式/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nobey"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+</div>
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+
+  
+  &copy; 2016 NoBey
+  
+</p>
+
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
